@@ -88,6 +88,9 @@ private:
 
 	SetValueMotionProfile getSetValue();
 
+	long double ftToRotations(long double ft);
+
+	long double velToRotations(long double ftpersec);
 
 
 

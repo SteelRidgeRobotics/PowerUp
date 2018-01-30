@@ -69,8 +69,8 @@ void Drivetrain::userDrive(std::shared_ptr<Joystick>xbox){
 }
 
 void Drivetrain::encoderPosition(double left, double right){
-	frontleft->Set(ControlMode::Position, 80*left);
-	frontright->Set(ControlMode::Position, 80*right);
+	frontleft->Set(ControlMode::Position, ftToRotations(left));
+	frontright->Set(ControlMode::Position, ftToRotations(right));
 
 
 	l_pos = left;
@@ -116,3 +116,6 @@ bool Drivetrain::isMove(){
 		}
 }
 
+double Drivetrain::ftToRotations(double ft){
+	return ft*4*RobotMap::kSensorUnitsPerRotation*(1/0.5)*(1/M_PI);
+}

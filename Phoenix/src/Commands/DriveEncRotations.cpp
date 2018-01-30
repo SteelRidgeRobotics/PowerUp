@@ -34,7 +34,7 @@ void DriveEncRotations::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void DriveEncRotations::Execute() {
-	Robot::drivetrain->encoderPosition(20,20);
+	Robot::drivetrain->encoderPosition(10,10);
 		m_done = Robot::drivetrain->isMove();
 }
 

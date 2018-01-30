@@ -60,7 +60,7 @@ MotionProfile::MotionProfile() : frc::Subsystem("MotionProfile"), _notifier(&Mot
 
 	//Notifier *_notifier = new Notifier(MotionProfile::PeriodicTask());
 
-	_notifier.StartPeriodic(0.005);
+	_notifier.StartPeriodic(0.025);
 
 	frontleft->ChangeMotionControlFramePeriod(RobotMap::kProfilePeriodms/2);
 	frontright->ChangeMotionControlFramePeriod(RobotMap::kProfilePeriodms/2);
@@ -334,8 +334,8 @@ void MotionProfile::startFilling()
 				double lvelocityRPM = leftprofile[i][1];
 
 				/* for each point, fill our structure and pass it to API */
-				lpoint.position = lpositionRot * RobotMap::kSensorUnitsPerRotation*2*3.14159*.5*1.5 ;  //Convert Revolutions to Units
-				lpoint.velocity = lvelocityRPM * (RobotMap::kSensorUnitsPerRotation*2*3.14159*.5*1.5) / 600.0; //Convert RPM to Units/100ms
+				lpoint.position = ftToRotations(lpositionRot);  //Convert Revolutions to Units
+				lpoint.velocity = velToRotations(lvelocityRPM) / 600.0; //Convert RPM to Units/100ms
 				lpoint.headingDeg = 0; /* future feature - not used in this example*/
 				lpoint.profileSlotSelect0 = RobotMap::kSlotIDx_Motion; /* which set of gains would you like to use [0,3]? */
 				lpoint.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
@@ -356,8 +356,8 @@ void MotionProfile::startFilling()
 							double rvelocityRPM = rightprofile[j][1];
 
 							/* for each point, fill our structure and pass it to API */
-							rpoint.position = rpositionRot * RobotMap::kSensorUnitsPerRotation*2*3.14159*.5*1.5 ;  //Convert Revolutions to Units
-							rpoint.velocity = rvelocityRPM * (RobotMap::kSensorUnitsPerRotation*2*3.14159*.5*1.5) / 600.0; //Convert RPM to Units/100ms
+							rpoint.position = ftToRotations(rpositionRot);  //Convert Revolutions to Units
+							rpoint.velocity = velToRotations(rvelocityRPM) / 600.0; //Convert RPM to Units/100ms
 							rpoint.headingDeg = 0; /* future feature - not used in this example*/
 							rpoint.profileSlotSelect0 = RobotMap::kSlotIDx_Motion; /* which set of gains would you like to use [0,3]? */
 							rpoint.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
@@ -389,5 +389,13 @@ void MotionProfile::startFilling()
 	SetValueMotionProfile MotionProfile::getSetValue() {
 			return _setValue;
 		}
+
+	long double MotionProfile::ftToRotations(long double ft){
+		return ft*4*RobotMap::kSensorUnitsPerRotation*(1/0.5)*(1/M_PI);
+	}
+
+	long double MotionProfile::velToRotations(long double ftpersec){
+		return ftToRotations(ftpersec)*60;
+	}
 
 

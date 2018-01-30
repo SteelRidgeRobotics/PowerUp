@@ -48,7 +48,7 @@ public:
 
 	static const int kSensorUnitsPerRotation = 80; //CIMcoder 4 * 20 pulses
 
-	static const int kProfilePeriodms = 10; //Motion Profile period between points.
+	static const int kProfilePeriodms = 50; //Motion Profile period between points.
 
 	/*Closed Loop PID_F constants */
 

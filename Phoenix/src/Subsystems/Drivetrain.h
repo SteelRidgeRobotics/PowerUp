@@ -53,6 +53,10 @@ public:
 
 	bool isMove();
 
+	double ftToRotations(double ft);
+
+
+
 };
 
 #endif
