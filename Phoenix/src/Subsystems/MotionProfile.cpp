@@ -308,8 +308,7 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 			for(int i=0;i<totalCnt;++i){
 				double lpositionft = leftprofile[i][0];
 				double lvelocityftpers = leftprofile[i][1];
-				double rpositionft = rightprofile[i][0];
-				double rvelocityftpers = rightprofile[i][1];
+
 
 				/* for each point, fill our structure and pass it to API */
 				lpoint.position = ftToRotations(lpositionft);  //Convert Revolutions to Units
@@ -320,13 +319,6 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 				lpoint.timeDur = GetTrajectoryDuration((int) leftprofile[i][2]);
 				lpoint.zeroPos = false;
 
-				rpoint.position = ftToRotations(rpositionft);  //Convert Revolutions to Units
-				rpoint.velocity = velToRotations(rvelocityftpers) / 600.0; //Convert RPM to Units/100ms
-				rpoint.headingDeg = 0; /* future feature - not used in this example*/
-				rpoint.profileSlotSelect0 = RobotMap::kSlotIDx_Motion; /* which set of gains would you like to use [0,3]? */
-				rpoint.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
-				rpoint.timeDur = GetTrajectoryDuration((int) rightprofile[i][2]);
-				rpoint.zeroPos = false;
 
 				if (i == 0)
 					lpoint.zeroPos = true; /* set this to true on the first point */
