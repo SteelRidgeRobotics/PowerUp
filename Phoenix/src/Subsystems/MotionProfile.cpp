@@ -52,14 +52,6 @@ MotionProfile::MotionProfile() : frc::Subsystem("MotionProfile"), _notifier(&Mot
 
 
 
-	//_notifier.reset(new Notifier);
-
-	//_notifier->SetHandler(PeriodicTask());
-
-	//_notifier = new Notifier(&MotionProfile::PeriodicTask());
-
-	//Notifier *_notifier = new Notifier(MotionProfile::PeriodicTask());
-
 	_notifier.StartPeriodic(0.025);
 
 	frontleft->ChangeMotionControlFramePeriod(RobotMap::kProfilePeriodms/2);
@@ -96,10 +88,7 @@ void MotionProfile::PeriodicTask(){
 }
 
 void MotionProfile::initMotionProfile(){
-	//Robot::drivetrain->encoderReset();
 
-	//frontleft->ConfigMotionProfileTrajectoryPeriod(0, 10);
-	//frontright->ConfigMotionProfileTrajectoryPeriod(0,10);
 	 frontleft->Config_kF(RobotMap::kSlotIDx_Motion, RobotMap::kF_MotionLeft, RobotMap::kTimeoutMs);
 	 frontleft->Config_kP(RobotMap::kSlotIDx_Motion, RobotMap::kP_MotionLeft, RobotMap::kTimeoutMs);
 	 frontleft->Config_kI(RobotMap::kSlotIDx_Motion, RobotMap::kI_MotionLeft, RobotMap::kTimeoutMs);
@@ -146,11 +135,7 @@ void MotionProfile::reset()
 		frontleft->Set(ControlMode::PercentOutput, 0.0);
 		frontright->Set(ControlMode::PercentOutput, 0.0);
 
-		//Robot::drivetrain->encoderReset();
-
-
-		//Robot::drivetrain->encoderDone();
-	}
+}
 
 void MotionProfile::control()
 	{
@@ -242,7 +227,7 @@ void MotionProfile::control()
 						 * because we set the last point's isLast to true, we will
 						 * get here when the MP is done*/
 
-						_setValue = SetValueMotionProfile::Disable;
+						_setValue = SetValueMotionProfile::Hold;
 						_state = 0;
 						_loopTimeout = -1;
 					}
@@ -288,17 +273,8 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 
 /** Start filling the MPs to all of the involved Talons. */
 
-/*
-void MotionProfile::startFilling()
-	{
 
-		startFilling(kLeftMotionProfile, kLeftMotionProfileSz);
-		startFilling(kRightMotionProfile, kRightMotionProfileSz);
-	}
-
-*/
-
-	void MotionProfile::startFilling(const double leftprofile[][3], int leftCnt, const double rightprofile[][3], int rightCnt)
+	void MotionProfile::startFilling(const double leftprofile[][3], const double rightprofile[][3], int totalCnt)
 		{
 			/* create an empty point */
 			TrajectoryPoint lpoint;
@@ -329,52 +305,71 @@ void MotionProfile::startFilling()
 			frontright->ConfigMotionProfileTrajectoryPeriod(0, 10);
 
 			/* This is fast since it's just into our TOP buffer */
-			for(int i=0;i<leftCnt;++i){
-				double lpositionRot = leftprofile[i][0];
-				double lvelocityRPM = leftprofile[i][1];
+			for(int i=0;i<totalCnt;++i){
+				double lpositionft = leftprofile[i][0];
+				double lvelocityftpers = leftprofile[i][1];
+				double rpositionft = rightprofile[i][0];
+				double rvelocityftpers = rightprofile[i][1];
 
 				/* for each point, fill our structure and pass it to API */
-				lpoint.position = ftToRotations(lpositionRot);  //Convert Revolutions to Units
-				lpoint.velocity = velToRotations(lvelocityRPM) / 600.0; //Convert RPM to Units/100ms
+				lpoint.position = ftToRotations(lpositionft);  //Convert Revolutions to Units
+				lpoint.velocity = velToRotations(lvelocityftpers) / 600.0; //Convert RPM to Units/100ms
 				lpoint.headingDeg = 0; /* future feature - not used in this example*/
 				lpoint.profileSlotSelect0 = RobotMap::kSlotIDx_Motion; /* which set of gains would you like to use [0,3]? */
 				lpoint.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
 				lpoint.timeDur = GetTrajectoryDuration((int) leftprofile[i][2]);
 				lpoint.zeroPos = false;
+
+				rpoint.position = ftToRotations(rpositionft);  //Convert Revolutions to Units
+				rpoint.velocity = velToRotations(rvelocityftpers) / 600.0; //Convert RPM to Units/100ms
+				rpoint.headingDeg = 0; /* future feature - not used in this example*/
+				rpoint.profileSlotSelect0 = RobotMap::kSlotIDx_Motion; /* which set of gains would you like to use [0,3]? */
+				rpoint.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
+				rpoint.timeDur = GetTrajectoryDuration((int) rightprofile[i][2]);
+				rpoint.zeroPos = false;
+
 				if (i == 0)
 					lpoint.zeroPos = true; /* set this to true on the first point */
 
+
 				lpoint.isLastPoint = false;
-				if ((i + 1) == leftCnt)
+
+
+				if ((i + 1) == totalCnt)
 					lpoint.isLastPoint = true; /* set this to true on the last point  */
 
+
 				frontleft->PushMotionProfileTrajectory(lpoint);
-				//frontright->PushMotionProfileTrajectory(point);
+
 			}
-			for(int j=0;j<rightCnt;++j){
-							double rpositionRot = rightprofile[j][0];
-							double rvelocityRPM = rightprofile[j][1];
+			for(int j=0;j<totalCnt;++j){
+				double rpositionft = rightprofile[j][0];
+				double rvelocityftpers = rightprofile[j][1];
 
-							/* for each point, fill our structure and pass it to API */
-							rpoint.position = ftToRotations(rpositionRot);  //Convert Revolutions to Units
-							rpoint.velocity = velToRotations(rvelocityRPM) / 600.0; //Convert RPM to Units/100ms
-							rpoint.headingDeg = 0; /* future feature - not used in this example*/
-							rpoint.profileSlotSelect0 = RobotMap::kSlotIDx_Motion; /* which set of gains would you like to use [0,3]? */
-							rpoint.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
-							rpoint.timeDur = GetTrajectoryDuration((int) rightprofile[j][2]);
-							rpoint.zeroPos = false;
-							if (j == 0)
-								rpoint.zeroPos = true; /* set this to true on the first point */
+				rpoint.position = ftToRotations(rpositionft);  //Convert Revolutions to Units
+				rpoint.velocity = velToRotations(rvelocityftpers) / 600.0; //Convert RPM to Units/100ms
+				rpoint.headingDeg = 0; /* future feature - not used in this example*/
+				rpoint.profileSlotSelect0 = RobotMap::kSlotIDx_Motion; /* which set of gains would you like to use [0,3]? */
+				rpoint.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
+				rpoint.timeDur = GetTrajectoryDuration((int) rightprofile[j][2]);
+				rpoint.zeroPos = false;
 
-							rpoint.isLastPoint = false;
-							if ((j + 1) == rightCnt)
-								rpoint.isLastPoint = true; /* set this to true on the last point  */
+				if (j == 0)
+					/* set this to true on the first point */
+					rpoint.zeroPos = true;
 
-							//frontleft->PushMotionProfileTrajectory(point);
-							frontright->PushMotionProfileTrajectory(rpoint);
-						}
+					rpoint.isLastPoint = false;
 
-		}
+				if ((j + 1) == totalCnt)
+					/* set this to true on the last point  */
+					rpoint.isLastPoint = true;
+
+
+				frontright->PushMotionProfileTrajectory(rpoint);
+
+			}
+
+}
 
 	void MotionProfile::start() {
 			_bStart = true;
@@ -390,11 +385,11 @@ void MotionProfile::startFilling()
 			return _setValue;
 		}
 
-	long double MotionProfile::ftToRotations(long double ft){
-		return ft*4*RobotMap::kSensorUnitsPerRotation*(1/0.5)*(1/M_PI);
+	double MotionProfile::ftToRotations(double ft){
+		return ft*10.71*80*(1/.5)*(1/M_PI);
 	}
 
-	long double MotionProfile::velToRotations(long double ftpersec){
+	double MotionProfile::velToRotations(double ftpersec){
 		return ftToRotations(ftpersec)*60;
 	}
 

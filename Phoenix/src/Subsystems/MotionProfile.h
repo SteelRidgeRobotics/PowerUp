@@ -82,15 +82,15 @@ private:
 
 	//void startFilling();
 
-	void startFilling(const double leftprofile[][3], int leftCnt, const double rightprofile[][3], int rightCnt);
+	void startFilling(const double leftprofile[][3], const double rightprofile[][3], int totalCnt);
 
 	void start();
 
 	SetValueMotionProfile getSetValue();
 
-	long double ftToRotations(long double ft);
+	double ftToRotations(double ft);
 
-	long double velToRotations(long double ftpersec);
+	double velToRotations(double ftpersec);
 
 
 

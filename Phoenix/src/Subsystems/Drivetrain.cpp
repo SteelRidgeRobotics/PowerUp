@@ -63,6 +63,13 @@ void Drivetrain::userDrive(std::shared_ptr<Joystick>xbox){
 	if (fabs(right_y) < 0.10)
 		right_y = 0;
 
+	int l_bump = xbox->GetRawButton(5);
+
+	if (l_bump==1){
+		left_y = -.2*xbox->GetRawAxis(1);
+		right_y =-.2*xbox->GetRawAxis(5);
+	}
+
 	frontleft->Set(ControlMode::PercentOutput, left_y); //TODO test If structure for multiple speeds
 	frontright->Set(ControlMode::PercentOutput, right_y);
 
@@ -117,5 +124,5 @@ bool Drivetrain::isMove(){
 }
 
 double Drivetrain::ftToRotations(double ft){
-	return ft*4*RobotMap::kSensorUnitsPerRotation*(1/0.5)*(1/M_PI);
+	return ft*10.71*80*(1/.5)*(1/M_PI);
 }

@@ -54,19 +54,19 @@ public:
 
 	static constexpr double kF_CLoopLeft = 0.0;
 
-	static constexpr double kP_CLoopLeft = 3;
+	static constexpr double kP_CLoopLeft = 1.5;
 
 	static constexpr double kI_CLoopLeft = 0.0;
 
-	static constexpr double kD_CLoopLeft = 300;
+	static constexpr double kD_CLoopLeft = 150;
 
 	static constexpr double kF_CLoopRight = 0.0;
 
-	static constexpr double kP_CLoopRight = 3;
+	static constexpr double kP_CLoopRight = 1.5;
 
 	static constexpr double kI_CLoopRight = 0.0;
 
-	static constexpr double kD_CLoopRight = 300;
+	static constexpr double kD_CLoopRight = 150;
 
 
 	/*Motion Profile PID_F constants */
@@ -79,7 +79,7 @@ public:
 
 	static constexpr double kD_MotionLeft = 0.0;
 
-	static constexpr double kF_MotionRight = 2.109;
+	static constexpr double kF_MotionRight = 2.379;
 
 	static constexpr double kP_MotionRight = 3.0;
 
