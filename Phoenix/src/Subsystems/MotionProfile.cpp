@@ -88,7 +88,7 @@ void MotionProfile::PeriodicTask(){
 }
 
 void MotionProfile::initMotionProfile(){
-
+/* Removed for the time being...
 	 frontleft->Config_kF(RobotMap::kSlotIDx_Motion, RobotMap::kF_MotionLeft, RobotMap::kTimeoutMs);
 	 frontleft->Config_kP(RobotMap::kSlotIDx_Motion, RobotMap::kP_MotionLeft, RobotMap::kTimeoutMs);
 	 frontleft->Config_kI(RobotMap::kSlotIDx_Motion, RobotMap::kI_MotionLeft, RobotMap::kTimeoutMs);
@@ -99,7 +99,7 @@ void MotionProfile::initMotionProfile(){
 	 frontright->Config_kP(RobotMap::kSlotIDx_Motion, RobotMap::kP_MotionRight, RobotMap::kTimeoutMs);
 	 frontright->Config_kI(RobotMap::kSlotIDx_Motion, RobotMap::kI_MotionRight, RobotMap::kTimeoutMs);
 	 frontright->Config_kD(RobotMap::kSlotIDx_Motion, RobotMap::kD_MotionRight, RobotMap::kTimeoutMs);
-
+*/
 
 	frontleft->SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic, RobotMap::kProfilePeriodms, 10);
 	frontright->SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic,RobotMap::kProfilePeriodms, 10);
@@ -376,7 +376,7 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 		}
 
 	double MotionProfile::ftToRotations(double ft){
-		return ft*10.71*80*(1/.5)*(1/M_PI);
+		return ft*RobotMap::kGearRatio*RobotMap::kSensorUnitsPerRotation*(1/RobotMap::kWheelDiam)*(1/M_PI);
 	}
 
 	double MotionProfile::velToRotations(double ftpersec){
@@ -384,7 +384,7 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 	}
 
 
-	/*
+	/* These are removed for the time being...
 
 	void MotionProfile::fillTalons(const double leftprofile[][3], const double rightprofile[][3], int totalCnt){
 

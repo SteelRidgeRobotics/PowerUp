@@ -3,6 +3,10 @@
  *
  *  Created on: Jan 20, 2018
  *      Author: 2018PowerUp
+ *
+ *  This is where we will put all of our profiles
+ *  for motion profiling.
+ *
  */
 
 #ifndef SRC_SUBSYSTEMS_PROFILES_H_

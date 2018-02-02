@@ -55,10 +55,10 @@ void RobotMap::init() {
 
     /*Set up the encoders */
 
-    drivetrainfrontleft->SetSensorPhase(true); //reverse sensors?
+    drivetrainfrontleft->SetSensorPhase(true); //reverse sensors.
 
 
-    drivetrainfrontright->SetSensorPhase(true); //reverse sensors?
+    drivetrainfrontright->SetSensorPhase(true); //reverse sensors.
 
     drivetrainfrontright->SetInverted(true);
     drivetrainrearright->SetInverted(true);

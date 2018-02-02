@@ -50,15 +50,19 @@ public:
 
 	static const int kProfilePeriodms = 50; //Motion Profile period between points.
 
+	static const double kGearRatio = 10.71; //Mini box motor gear ratio.
+
+	static const double kWheelDiam = .5; //Diameter of the wheel in FEET.
+
 	/*Closed Loop PID_F constants */
 
-	static constexpr double kF_CLoopLeft = 0.0;
+	static constexpr double kF_CLoopLeft = 0.0; //Feed forward gain
 
-	static constexpr double kP_CLoopLeft = 1.5;
+	static constexpr double kP_CLoopLeft = 1.5; //Proportional gain
 
-	static constexpr double kI_CLoopLeft = 0.0;
+	static constexpr double kI_CLoopLeft = 0.0; //Integral gain
 
-	static constexpr double kD_CLoopLeft = 150;
+	static constexpr double kD_CLoopLeft = 150; //Derivative gain
 
 	static constexpr double kF_CLoopRight = 0.0;
 
@@ -71,15 +75,15 @@ public:
 
 	/*Motion Profile PID_F constants */
 
-	static constexpr double kF_MotionLeft = 2.379;
+	static constexpr double kF_MotionLeft = 2.054; //Feed forward gain
 
-	static constexpr double kP_MotionLeft = 3.0;
+	static constexpr double kP_MotionLeft = 1.5; //Proportional gain
 
-	static constexpr double kI_MotionLeft = 0.0;
+	static constexpr double kI_MotionLeft = 0.0; //Integral gain
 
-	static constexpr double kD_MotionLeft = 0.0;
+	static constexpr double kD_MotionLeft = 0.0; //Derivative gain
 
-	static constexpr double kF_MotionRight = 2.379;
+	static constexpr double kF_MotionRight = 2.127;
 
 	static constexpr double kP_MotionRight = 3.0;
 

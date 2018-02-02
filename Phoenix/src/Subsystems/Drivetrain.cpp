@@ -33,7 +33,7 @@ Drivetrain::Drivetrain() : frc::Subsystem("Drivetrain") {
     l_pos = 0.0;
     r_pos = 0.0;
 
-    //left_y =-1*xbox->GetRawAxis(1);
+
 
 }
 
@@ -89,6 +89,8 @@ void Drivetrain::encoderReset(){
 	frontleft->SetSelectedSensorPosition(0, 0, 10);
 	frontright->SetSelectedSensorPosition(0, 0, 10);
 
+	/* Removed for now...
+
 	frontleft->Config_kF(RobotMap::kSlotIDx_CLoop, RobotMap::kF_CLoopLeft, RobotMap::kTimeoutMs);
 	frontleft->Config_kP(RobotMap::kSlotIDx_CLoop, RobotMap::kP_CLoopLeft, RobotMap::kTimeoutMs);
 	frontleft->Config_kI(RobotMap::kSlotIDx_CLoop, RobotMap::kI_CLoopLeft, RobotMap::kTimeoutMs);
@@ -100,12 +102,12 @@ void Drivetrain::encoderReset(){
 	frontright->Config_kI(RobotMap::kSlotIDx_CLoop, RobotMap::kI_CLoopRight, RobotMap::kTimeoutMs);
 	frontright->Config_kD(RobotMap::kSlotIDx_CLoop, RobotMap::kD_CLoopRight, RobotMap::kTimeoutMs);
 
-
+	*/
 
 }
 
 void Drivetrain::encoderDone(){
-	frontleft->Set(ControlMode::PercentOutput, 0.0); //TODO test If structure for multiple speeds
+	frontleft->Set(ControlMode::PercentOutput, 0.0);
 	frontright->Set(ControlMode::PercentOutput, 0.0);
 
 	l_pos = 0.0;
@@ -124,5 +126,5 @@ bool Drivetrain::isMove(){
 }
 
 double Drivetrain::ftToRotations(double ft){
-	return ft*10.71*80*(1/.5)*(1/M_PI);
+	return ft*RobotMap::kGearRatio*RobotMap::kSensorUnitsPerRotation*(1/RobotMap::kWheelDiam)*(1/M_PI);
 }

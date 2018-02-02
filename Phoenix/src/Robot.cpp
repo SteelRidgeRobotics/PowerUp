@@ -71,10 +71,12 @@ void Robot::AutonomousInit() {
 void Robot::AutonomousPeriodic() {
 	frc::Scheduler::GetInstance()->Run();
 
+	/*Put data to the smart dashbard*/
+
 	SmartDashboard::PutNumber("Left Encoder Position", RobotMap::drivetrainfrontleft->GetSelectedSensorPosition(0));
 	SmartDashboard::PutNumber("Right Encoder Position",RobotMap::drivetrainfrontright->GetSelectedSensorPosition(0));
-	SmartDashboard::PutNumber("Left Encoder Velocity", (600/RobotMap::kSensorUnitsPerRotation)*RobotMap::drivetrainfrontleft->GetSelectedSensorVelocity(0));
-	SmartDashboard::PutNumber("Right Encoder Velocity", (600/RobotMap::kSensorUnitsPerRotation)*RobotMap::drivetrainfrontright->GetSelectedSensorVelocity(0));
+	SmartDashboard::PutNumber("Left Encoder Velocity", RobotMap::drivetrainfrontleft->GetSelectedSensorVelocity(0));
+	SmartDashboard::PutNumber("Right Encoder Velocity",RobotMap::drivetrainfrontright->GetSelectedSensorVelocity(0));
 }
 
 void Robot::TeleopInit() {
@@ -89,12 +91,14 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() {
 	frc::Scheduler::GetInstance()->Run();
 
+	/*Put data to the smart dashbard*/
+
 	SmartDashboard::PutNumber("Left Error", RobotMap::drivetrainfrontleft->GetClosedLoopError(0));
 	SmartDashboard::PutNumber("Right Error", RobotMap::drivetrainfrontright->GetClosedLoopError(0));
 	SmartDashboard::PutNumber("Left Encoder Position", RobotMap::drivetrainfrontleft->GetSelectedSensorPosition(0));
 	SmartDashboard::PutNumber("Right Encoder Position",RobotMap::drivetrainfrontright->GetSelectedSensorPosition(0));
-	SmartDashboard::PutNumber("Left Encoder Speed", (600/RobotMap::kSensorUnitsPerRotation)*RobotMap::drivetrainfrontleft->GetSelectedSensorVelocity(0));
-	SmartDashboard::PutNumber("Right Encoder Speed", (600/RobotMap::kSensorUnitsPerRotation)*RobotMap::drivetrainfrontright->GetSelectedSensorVelocity(0));
+	SmartDashboard::PutNumber("Left Encoder Speed", RobotMap::drivetrainfrontleft->GetSelectedSensorVelocity(0));
+	SmartDashboard::PutNumber("Right Encoder Speed", RobotMap::drivetrainfrontright->GetSelectedSensorVelocity(0));
 }
 
 START_ROBOT_CLASS(Robot);
