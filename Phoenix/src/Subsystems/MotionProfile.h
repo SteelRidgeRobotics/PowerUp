@@ -74,13 +74,9 @@ private:
 
 	void initMotionProfile();
 
-	void removeUnderrun();
-
 	void reset();
 
 	void control();
-
-	//void startFilling();
 
 	void startFilling(const double leftprofile[][3], const double rightprofile[][3], int totalCnt);
 
@@ -92,7 +88,27 @@ private:
 
 	double velToRotations(double ftpersec);
 
+	/*Adding for testing*/
 
+	void fillTalons(const double leftprofile[][3], const double rightprofile[][3], int totalCnt);
+
+	void initializeProfile();
+
+	void getMotionProfileStatus();
+
+	void enableMotionProfile();
+
+	void removeUnderrun();
+
+	void removeUnderrunLeft();
+
+	void removeUnderrunRight();
+
+	bool statusLast();
+
+	void disableMotionProfile();
+
+	void resetEncoders();
 
 
 };
