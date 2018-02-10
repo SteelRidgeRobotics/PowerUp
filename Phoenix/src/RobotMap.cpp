@@ -92,7 +92,4 @@ void RobotMap::init() {
     drivetrainfrontright->Config_kP(kSlotIDx_Motion, kP_MotionRight, kTimeoutMs);
     drivetrainfrontright->Config_kI(kSlotIDx_Motion, kI_MotionRight, kTimeoutMs);
     drivetrainfrontright->Config_kD(kSlotIDx_Motion, kD_MotionRight, kTimeoutMs);
-
-
-
 }

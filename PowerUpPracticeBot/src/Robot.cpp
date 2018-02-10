@@ -80,6 +80,13 @@ void Robot::AutonomousInit() {
 
 void Robot::AutonomousPeriodic() {
 	frc::Scheduler::GetInstance()->Run();
+
+	/*Put data to the smart dashboard*/
+
+	SmartDashboard::PutNumber("Left Encoder Position", RobotMap::driveTrainLeftFront->GetSelectedSensorPosition(0));
+	SmartDashboard::PutNumber("Right Encoder Position",RobotMap::driveTrainRightFront->GetSelectedSensorPosition(0));
+	SmartDashboard::PutNumber("Left Encoder Velocity", RobotMap::driveTrainLeftFront->GetSelectedSensorVelocity(0));
+	SmartDashboard::PutNumber("Right Encoder Velocity",RobotMap::driveTrainRightFront->GetSelectedSensorVelocity(0));
 }
 
 void Robot::TeleopInit() {
@@ -93,6 +100,15 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
 	frc::Scheduler::GetInstance()->Run();
+
+	/*Put data to the smart dashboard*/
+
+	SmartDashboard::PutNumber("Left Error", RobotMap::driveTrainLeftFront->GetClosedLoopError(0));
+	SmartDashboard::PutNumber("Right Error", RobotMap::driveTrainRightFront->GetClosedLoopError(0));
+	SmartDashboard::PutNumber("Left Encoder Position", RobotMap::driveTrainLeftFront->GetSelectedSensorPosition(0));
+	SmartDashboard::PutNumber("Right Encoder Position", RobotMap::driveTrainRightFront->GetSelectedSensorPosition(0));
+	SmartDashboard::PutNumber("Left Encoder Speed", RobotMap::driveTrainLeftFront->GetSelectedSensorVelocity(0));
+	SmartDashboard::PutNumber("Right Encoder Speed", RobotMap::driveTrainRightFront->GetSelectedSensorVelocity(0));
 }
 
 START_ROBOT_CLASS(Robot);
