@@ -56,45 +56,45 @@ public:
 
 	static const int kProfilePeriodMs = 50; //Motion Profile period between points
 
-	static const double kGearRatio = 10.71; //Mini box motor gear ratio
+	static constexpr double kGearRatio = 10.71; //Mini box motor gear ratio
 
-	static const double kWheelDiam = (8.0/12); //Diameter of the wheel in feet
+	static constexpr double kWheelDiam = (8.0/12); //Diameter of the wheel in feet
 
 	//Closed Loop PID_F constants
 
-	static const double kF_CloopLeft = 0.0; //Feed forward gain
+	static constexpr double kF_CloopLeft = 0.0; //Feed forward gain
 
-	static const double kP_CloopLeft = 0.0; //Proportional gain
+	static constexpr double kP_CloopLeft = 0.0; //Proportional gain
 
-	static const double kI_CloopLeft = 0.0; //Integral gain
+	static constexpr double kI_CloopLeft = 0.0; //Integral gain
 
-	static const double kD_CloopLeft = 0.0; // Derivative gain
+	static constexpr double kD_CloopLeft = 0.0; // Derivative gain
 
-	static const double kF_CloopRight = 0.0; //Feed forward gain
+	static constexpr double kF_CloopRight = 0.0; //Feed forward gain
 
-	static const double kP_CloopRight = 0.0; //Proportional gain
+	static constexpr double kP_CloopRight = 0.0; //Proportional gain
 
-	static const double kI_CloopRight = 0.0; //Integral gain
+	static constexpr double kI_CloopRight = 0.0; //Integral gain
 
-	static const double kD_CloopRight = 0.0; // Derivative gain
+	static constexpr double kD_CloopRight = 0.0; // Derivative gain
 
 	//Motion Profile PID_F constants
 
-	static const double kF_MotionLeft = 0.0; //Feed forward gain
+	static constexpr double kF_MotionLeft = 0.0; //Feed forward gain
 
-	static const double kP_MotionLeft = 0.0; //Proportional gain
+	static constexpr double kP_MotionLeft = 0.0; //Proportional gain
 
-	static const double kI_MotionLeft = 0.0; //Integral gain
+	static constexpr double kI_MotionLeft = 0.0; //Integral gain
 
-	static const double kD_MotionLeft = 0.0; // Derivative gain
+	static constexpr double kD_MotionLeft = 0.0; // Derivative gain
 
-	static const double kF_MotionRight = 0.0; //Feed forward gain
+	static constexpr double kF_MotionRight = 0.0; //Feed forward gain
 
-	static const double kP_MotionRight = 0.0; //Proportional gain
+	static constexpr double kP_MotionRight = 0.0; //Proportional gain
 
-	static const double kI_MotionRight = 0.0; //Integral gain
+	static constexpr double kI_MotionRight = 0.0; //Integral gain
 
-	static const double kD_MotionRight = 0.0; // Derivative gain
+	static constexpr double kD_MotionRight = 0.0; // Derivative gain
 
 
 };
