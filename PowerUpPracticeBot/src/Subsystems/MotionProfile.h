@@ -13,6 +13,9 @@
 #define MOTIONPROFILE_H
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
+#include "../Instrumentation.h"
+#include "../Profiles.h"
+#include "ctre/Phoenix.h"
 
 /**
  *
