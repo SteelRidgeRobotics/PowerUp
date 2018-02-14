@@ -73,6 +73,15 @@ void DriveTrain::userDrive(std::shared_ptr<Joystick>mainController) {
 
 }
 
+void DriveTrain::encoderPosition(double left, double right){
+	leftFront->Set(ControlMode::Position, ftToRotations(left));
+	rightFront->Set(ControlMode::Position, ftToRotations(right));
+
+
+	l_pos = left;
+	r_pos = right;
+}
+
 
 void DriveTrain::encoderReset() {
 	leftFront->SetSelectedSensorPosition(0, 0, RobotMap::kTimeoutMs);

@@ -28,7 +28,7 @@ void ArmPositionFloor::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ArmPositionFloor::Execute() {
-
+	Robot::arm->armLow();
 }
 
 // Make this return true when this Command no longer needs to run execute()

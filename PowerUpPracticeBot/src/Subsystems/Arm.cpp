@@ -45,3 +45,65 @@ void Arm::Periodic() {
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
+void Arm::armLow(){
+	double pot;
+
+	pot = armPositionSensor->Get();
+
+	double error;
+
+	double gain=0.5;
+
+	double target = 10;
+
+	error = pot - target;
+
+	double drive;
+
+	drive = gain*error + 127;
+
+	armActuator->Set(drive);
+
+}
+
+void Arm::armMiddle(){
+	double pot;
+
+	pot = armPositionSensor->Get();
+
+	double error;
+
+	double gain=0.5;
+
+	double target = 250;
+
+	error = pot - target;
+
+	double drive;
+
+	drive = gain*error + 127;
+
+	armActuator->Set(drive);
+
+}
+
+void Arm::armHigh(){
+	double pot;
+
+	pot = armPositionSensor->Get();
+
+	double error;
+
+	double gain=0.5;
+
+	double target = 500;
+
+	error = pot - target;
+
+	double drive;
+
+	drive = gain*error + 127;
+
+	armActuator->Set(drive);
+
+}

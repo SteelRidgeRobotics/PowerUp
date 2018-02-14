@@ -28,7 +28,7 @@ void ArmPositionScale::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ArmPositionScale::Execute() {
-
+	Robot::arm->armHigh();
 }
 
 // Make this return true when this Command no longer needs to run execute()
