@@ -63,7 +63,7 @@ void RobotMap::init() {
     armArmActuator.reset(new frc::VictorSP(2));
     lw->AddActuator("Arm", "ArmActuator", std::static_pointer_cast<frc::VictorSP>(armArmActuator));
     
-    armArmPositionSensor.reset(new frc::AnalogPotentiometer(0, 270.0, 0.0));
+    armArmPositionSensor.reset(new frc::AnalogPotentiometer(0, 360, 0.0));
     lw->AddSensor("Arm", "ArmPositionSensor", armArmPositionSensor);
     
     climberClimberRelease.reset(new frc::Solenoid(0, 0));

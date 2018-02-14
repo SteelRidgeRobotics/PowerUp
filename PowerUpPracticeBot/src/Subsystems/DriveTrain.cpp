@@ -102,7 +102,7 @@ bool DriveTrain::isMove(){
 
 
 double DriveTrain::ftToRotations(double ft){
-	return ft*RobotMap::kGearRatio*RobotMap::kSensorUntisPerRotation*(1/RobotMap::kWheelDiam)*(1/M_PI);
+	return ft*RobotMap::kGearRatio*RobotMap::kSensorUnitsPerRotation*(1/RobotMap::kWheelDiam)*(1/M_PI);
 }
 
 

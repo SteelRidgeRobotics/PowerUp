@@ -28,7 +28,8 @@ void ResetDriveTrain::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ResetDriveTrain::Execute() {
-
+Robot::driveTrain->encoderReset();
+Robot::driveTrain->encoderDone();
 }
 
 // Make this return true when this Command no longer needs to run execute()

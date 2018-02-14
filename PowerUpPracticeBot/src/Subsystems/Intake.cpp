@@ -54,34 +54,36 @@ void Intake::controlCube(std::shared_ptr<Joystick>sideController) {
 	int left_bumper = sideController->GetRawButton(5);
 
 	if(left_trigger > 0.1 && right_trigger > 0.1) {
-		leftRoller(0);
-		rightRoller(0);
+		leftRoller->Set(0.0);
+		rightRoller->Set(0.0);
 	}
 	else if (left_bumper == 1 && right_trigger == 0) {
-		leftRoller(0.5*left_trigger);
-		rightRoller(-0.5*left_trigger);
+		leftRoller->Set(0.5*left_trigger);
+		rightRoller->Set(-0.5*left_trigger);
 	}
 	else if (left_bumper == 1 && left_trigger== 0){
-		leftRoller(-0.5*right_trigger);
-		rightRoller(0.5*right_trigger);
+		leftRoller->Set(-0.5*right_trigger);
+		rightRoller->Set(0.5*right_trigger);
 	}
 	else if (left_bumper == 0 && right_trigger == 0) {
-		leftRoller(left_trigger);
-		rightRoller(-1*left_trigger);
+		leftRoller->Set(left_trigger);
+		rightRoller->Set(-1*left_trigger);
 	}
 	else if (left_bumper == 0 && left_trigger== 0){
-		leftRoller(-1*right_trigger);
-		rightRoller(right_trigger);
+		leftRoller->Set(-1*right_trigger);
+		rightRoller->Set(right_trigger);
 	}
 
 }
 
-
+/*
 void Intake::cubeinPlace(){
 	if(rollerStopSensor == 1){
 		lightOn = 1;
+
 	}
 	else{
 		lightOn = 0;
 	}
 }
+*/

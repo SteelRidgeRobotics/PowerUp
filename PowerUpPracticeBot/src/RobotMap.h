@@ -52,7 +52,7 @@ public:
 
 	static const int kSlotIDx_Motion = 1; //Talon controller slot 1 for MP
 
-	static const int kSensorUntisPerRotation = 80; //CIMcoder 4 * 20 pulses
+	static const int kSensorUnitsPerRotation = 80; //CIMcoder 4 * 20 pulses
 
 	static const int kProfilePeriodMs = 50; //Motion Profile period between points
 
