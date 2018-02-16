@@ -23,12 +23,13 @@ ArmPositionSwitch::ArmPositionSwitch(): frc::Command() {
 
 // Called just before this Command runs the first time
 void ArmPositionSwitch::Initialize() {
-
+	Robot::arm->SetSetpoint(Robot::arm->armMiddle());
+	Robot::arm->Enable();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ArmPositionSwitch::Execute() {
-	Robot::arm->armMiddle();
+	Robot::arm->SetSetpoint(Robot::arm->armMiddle());
 }
 
 // Make this return true when this Command no longer needs to run execute()

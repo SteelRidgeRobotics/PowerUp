@@ -109,7 +109,8 @@ void Robot::TeleopPeriodic() {
 	SmartDashboard::PutNumber("Right Encoder Position", RobotMap::driveTrainRightFront->GetSelectedSensorPosition(0));
 	SmartDashboard::PutNumber("Left Encoder Speed", RobotMap::driveTrainLeftFront->GetSelectedSensorVelocity(0));
 	SmartDashboard::PutNumber("Right Encoder Speed", RobotMap::driveTrainRightFront->GetSelectedSensorVelocity(0));
-	SmartDashboard::PutNumber("Potentiometer", RobotMap::armArmPositionSensor->Get());
+
+
 
 }
 

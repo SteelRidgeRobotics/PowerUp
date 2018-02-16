@@ -64,11 +64,11 @@ OI::OI() {
     backButton.reset(new frc::JoystickButton(sideController.get(), 7));
     backButton->WhenPressed(new ClimberReach());
     y.reset(new frc::JoystickButton(sideController.get(), 4));
-    y->WhenPressed(new ArmPositionScale());
+    y->WhileHeld(new ArmPositionScale());
     b.reset(new frc::JoystickButton(sideController.get(), 2));
-    b->WhenPressed(new ArmPositionSwitch());
+    b->WhileHeld(new ArmPositionSwitch());
     a.reset(new frc::JoystickButton(sideController.get(), 1));
-    a->WhenPressed(new ArmPositionFloor());
+    a->WhileHeld(new ArmPositionFloor());
 
     // SmartDashboard Buttons
     frc::SmartDashboard::PutData("IntakeSwitchRumble", new IntakeSwitchRumble());
