@@ -12,6 +12,9 @@
 #ifndef POSITIONONERIGHTPATH_H
 #define POSITIONONERIGHTPATH_H
 
+#include "../Subsystems/MotionProfile.h"
+#include "../Instrumentation.h"
+
 
 #include "Commands/Subsystem.h"
 #include "../Robot.h"

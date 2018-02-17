@@ -12,6 +12,9 @@
 #ifndef POSITIONTHREERIGHTPATH_H
 #define POSITIONTHREERIGHTPATH_H
 
+#include "../Subsystems/MotionProfile.h"
+#include "../Instrumentation.h"
+
 
 #include "Commands/Subsystem.h"
 #include "../Robot.h"
