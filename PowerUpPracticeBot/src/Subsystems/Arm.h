@@ -43,6 +43,8 @@ public:
 	double armMiddle();
 
 	double armHigh();
+
+	void userArm(std::shared_ptr<Joystick>sideController);
 };
 
 #endif

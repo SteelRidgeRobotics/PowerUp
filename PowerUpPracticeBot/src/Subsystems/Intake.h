@@ -40,10 +40,9 @@ public:
 
 	void stopRollers();
 
-	void userControlIntake(std::shared_ptr<Joystick>sideController);
+	void autoDeploy();
 
 
-	void cubeinPlace();
 };
 
 #endif

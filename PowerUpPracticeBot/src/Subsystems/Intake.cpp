@@ -59,12 +59,12 @@ void Intake::controlCube(std::shared_ptr<Joystick>sideController) {
 		rightRoller->Set(0.0);
 	}
 	else if ((left_bumper == 1 || right_bumper == 1) && right_trigger == 0) {
-		leftRoller->Set(-0.5*left_trigger);
-		rightRoller->Set(0.5*left_trigger);
+		leftRoller->Set(-0.2*left_trigger);
+		rightRoller->Set(0.2*left_trigger);
 	}
 	else if ((left_bumper == 1 || right_bumper == 1) && left_trigger== 0){
-		leftRoller->Set(0.5*right_trigger);
-		rightRoller->Set(-0.5*right_trigger);
+		leftRoller->Set(0.2*right_trigger);
+		rightRoller->Set(-0.2*right_trigger);
 	}
 	else if ((left_bumper == 0 || right_bumper == 0) && right_trigger == 0) {
 		leftRoller->Set(-1*left_trigger);
@@ -77,14 +77,12 @@ void Intake::controlCube(std::shared_ptr<Joystick>sideController) {
 
 }
 
-/*
-void Intake::cubeinPlace(){
-	if(rollerStopSensor == 1){
-		lightOn = 1;
-
-	}
-	else{
-		lightOn = 0;
-	}
+void Intake::stopRollers(){
+	leftRoller->Set(0.0);
+	rightRoller->Set(0.0);
 }
-*/
+
+void Intake::autoDeploy(){
+	leftRoller->Set(0.5);
+	rightRoller->Set(-0.5);
+}
