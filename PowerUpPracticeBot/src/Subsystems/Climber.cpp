@@ -46,3 +46,22 @@ void Climber::Periodic() {
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
+void Climber::pinRelease(){
+	climberRelease->Set(-0.2); //Check whether this should be positive or negative
+}
+
+void Climber::pinStop(){
+	climberRelease->Set(0.0);
+}
+
+void Climber::climbUp(){
+	climberPullMotor->Set(0.5); //Check whether this should be positive or negative
+}
+
+void Climber::climbDown(){
+	climberPullMotor->Set(-0.5); //Check whether this should be positive or negative
+}
+
+void Climber::climbStop(){
+	climberPullMotor->Set(0.0);
+}

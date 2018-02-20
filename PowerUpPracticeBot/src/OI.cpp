@@ -62,13 +62,13 @@ OI::OI() {
     startButton.reset(new frc::JoystickButton(sideController.get(), 8));
     startButton->WhileHeld(new ClimberPull());
     backButton.reset(new frc::JoystickButton(sideController.get(), 7));
-    backButton->WhenPressed(new ClimberReach());
+    backButton->WhenPressed(new ClimberReach(1.0));
     y.reset(new frc::JoystickButton(sideController.get(), 4));
-    y->WhileHeld(new ArmPositionScale());
+    y->WhenPressed(new ArmPositionScale());
     b.reset(new frc::JoystickButton(sideController.get(), 2));
-    b->WhileHeld(new ArmPositionSwitch());
+    b->WhenPressed(new ArmPositionSwitch());
     a.reset(new frc::JoystickButton(sideController.get(), 1));
-    a->WhileHeld(new ArmPositionFloor());
+    a->WhenPressed(new ArmPositionFloor());
 
     // SmartDashboard Buttons
     frc::SmartDashboard::PutData("IntakeSwitchRumble", new IntakeSwitchRumble());
@@ -92,7 +92,7 @@ OI::OI() {
     frc::SmartDashboard::PutData("PositionOneLeft", new PositionOneLeft());
     frc::SmartDashboard::PutData("ClimberStop", new ClimberStop());
     frc::SmartDashboard::PutData("ClimberPull", new ClimberPull());
-    frc::SmartDashboard::PutData("ClimberReach", new ClimberReach());
+    frc::SmartDashboard::PutData("ClimberReach", new ClimberReach(1.0));
     frc::SmartDashboard::PutData("RollerStop", new RollerStop());
     frc::SmartDashboard::PutData("RollersDeployNormal", new RollersDeployNormal());
     frc::SmartDashboard::PutData("ArmPositionScale", new ArmPositionScale());

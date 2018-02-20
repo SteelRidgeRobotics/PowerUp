@@ -95,11 +95,24 @@ void RobotMap::init() {
    driveTrainLeftFront->SetSensorPhase(true); //Reverse sensors
    driveTrainRightFront->SetSensorPhase(true); //Reverse sensors
 
-   driveTrainRightBack->SetInverted(true);
+   driveTrainRightBack->SetInverted(true); //Reverse motor and slave for right side of robot.
    driveTrainRightFront->SetInverted(true);
 
    driveTrainLeftFront->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, kTimeoutMs);
    driveTrainRightFront->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, kTimeoutMs);
+
+
+   /*
+    * Set Neutral modes to brake
+    */
+
+
+   driveTrainLeftFront->SetNeutralMode(NeutralMode::Brake);
+   driveTrainLeftBack->SetNeutralMode(NeutralMode::Brake);
+   driveTrainRightFront->SetNeutralMode(NeutralMode::Brake);
+   driveTrainRightBack->SetNeutralMode(NeutralMode::Brake);
+
+
 
    /* Configure PID_F for Closed Loop */
 
