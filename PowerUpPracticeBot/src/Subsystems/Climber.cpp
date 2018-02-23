@@ -55,11 +55,11 @@ void Climber::pinStop(){
 }
 
 void Climber::climbUp(){
-	climberPullMotor->Set(0.5); //Check whether this should be positive or negative
+	climberPullMotor->Set(1.0); //Check whether this should be positive or negative
 }
 
 void Climber::climbDown(){
-	climberPullMotor->Set(-0.5); //Check whether this should be positive or negative
+	climberPullMotor->Set(-1.0); //Check whether this should be positive or negative
 }
 
 void Climber::climbStop(){

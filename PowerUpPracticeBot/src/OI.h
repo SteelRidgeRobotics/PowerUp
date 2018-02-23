@@ -46,6 +46,7 @@ private:
 	std::shared_ptr<frc::Joystick> sideController;
 	std::shared_ptr<frc::JoystickButton> startButton;
 	std::shared_ptr<frc::JoystickButton> backButton;
+	std::shared_ptr<frc::JoystickButton> x;
 	std::shared_ptr<frc::JoystickButton> y;
 	std::shared_ptr<frc::JoystickButton> b;
 	std::shared_ptr<frc::JoystickButton> a;
