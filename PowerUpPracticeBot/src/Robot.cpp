@@ -87,10 +87,14 @@ void Robot::AutonomousPeriodic() {
 
 	/*Put data to the smart dashboard*/
 
-	SmartDashboard::PutNumber("Left Encoder Position", RobotMap::driveTrainLeftFront->GetSelectedSensorPosition(0));
-	SmartDashboard::PutNumber("Right Encoder Position",RobotMap::driveTrainRightFront->GetSelectedSensorPosition(0));
-	SmartDashboard::PutNumber("Left Encoder Velocity", RobotMap::driveTrainLeftFront->GetSelectedSensorVelocity(0));
-	SmartDashboard::PutNumber("Right Encoder Velocity",RobotMap::driveTrainRightFront->GetSelectedSensorVelocity(0));
+	SmartDashboard::PutNumber("Left Error", RobotMap::driveTrainLeftFront->GetClosedLoopError(0));
+		SmartDashboard::PutNumber("Right Error", RobotMap::driveTrainRightFront->GetClosedLoopError(0));
+		SmartDashboard::PutNumber("Left Encoder Position", RobotMap::driveTrainLeftFront->GetSelectedSensorPosition(0));
+		SmartDashboard::PutNumber("Right Encoder Position", RobotMap::driveTrainRightFront->GetSelectedSensorPosition(0));
+		SmartDashboard::PutNumber("Left Encoder Speed", RobotMap::driveTrainLeftFront->GetSelectedSensorVelocity(0));
+		SmartDashboard::PutNumber("Right Encoder Speed", RobotMap::driveTrainRightFront->GetSelectedSensorVelocity(0));
+		SmartDashboard::PutNumber("Arm PID", RobotMap::armArmPositionSensor->PIDGet());
+		SmartDashboard::PutNumber("Arm Pot Voltage", RobotMap::armArmPositionSensor->Get());
 }
 
 void Robot::TeleopInit() {
