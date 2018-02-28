@@ -33,7 +33,7 @@ void DriveWithEncoders::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void DriveWithEncoders::Execute() {
-Robot::driveTrain->encoderPosition(10,10);
+Robot::driveTrain->encoderPosition(3000,3000);
 Robot::driveTrain->isMove();
 }
 

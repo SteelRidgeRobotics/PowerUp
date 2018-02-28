@@ -77,7 +77,7 @@ Arm::Arm() : frc::PIDSubsystem("Arm",5.0,0.0,0.0) {
      * so we don't overextend the actuator. Once PID tuning is
      * complete we can change this value accordingly if needed.
      */
-    GetPIDController()->SetInputRange(0.05, 0.40);
+    GetPIDController()->SetInputRange(0.1, 0.5);
 
     /*
      * This section is also very important.
@@ -150,7 +150,7 @@ void Arm::UsePIDOutput(double output) {
 
 double Arm::armLow(){
 
-	return 0.01;
+	return 0.1;
 
 }
 
@@ -165,7 +165,7 @@ double Arm::armLow(){
 
 double Arm::armMiddle(){
 
-	return 0.1;
+	return 0.3;
 
 }
 
@@ -180,7 +180,7 @@ double Arm::armMiddle(){
 
 double Arm::armHigh(){
 
-	return 0.35;
+	return 0.4;
 
 }
 

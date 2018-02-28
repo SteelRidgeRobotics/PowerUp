@@ -74,8 +74,8 @@ void DriveTrain::userDrive(std::shared_ptr<Joystick>mainController) {
 }
 
 void DriveTrain::encoderPosition(double left, double right){
-	leftFront->Set(ControlMode::Position, ftToRotations(left));
-	rightFront->Set(ControlMode::Position, ftToRotations(right));
+	leftFront->Set(ControlMode::Position, (left));
+	rightFront->Set(ControlMode::Position, (right));
 
 
 	l_pos = left;
