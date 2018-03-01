@@ -83,6 +83,6 @@ void Intake::stopRollers(){
 }
 
 void Intake::autoDeploy(){
-	leftRoller->Set(0.5);
-	rightRoller->Set(-0.5);
+	leftRoller->Set(0.75);
+	rightRoller->Set(-0.75);
 }

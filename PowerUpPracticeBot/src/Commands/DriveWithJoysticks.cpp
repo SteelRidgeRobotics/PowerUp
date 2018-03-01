@@ -24,7 +24,7 @@ DriveWithJoysticks::DriveWithJoysticks(): frc::Command() {
 
 // Called just before this Command runs the first time
 void DriveWithJoysticks::Initialize() {
-
+	std::cout << "DRIVEWITHJOY" << std::endl;
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -39,11 +39,11 @@ bool DriveWithJoysticks::IsFinished() {
 
 // Called once after isFinished returns true
 void DriveWithJoysticks::End() {
-
+	Robot::driveTrain->encoderDone();
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void DriveWithJoysticks::Interrupted() {
-
+	End();
 }
