@@ -23,7 +23,6 @@ ArmPositionSwitch::ArmPositionSwitch(): frc::Command() {
 
 // Called just before this Command runs the first time
 void ArmPositionSwitch::Initialize() {
-	SetTimeout(1.0);
 	std::cout << "ARMSWITCH" << std::endl;
 	Robot::arm->SetSetpoint(Robot::arm->armMiddle());
 	Robot::arm->Enable();
@@ -31,12 +30,12 @@ void ArmPositionSwitch::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ArmPositionSwitch::Execute() {
-	Robot::arm->SetSetpoint(Robot::arm->armMiddle());
+	//Robot::arm->SetSetpoint(Robot::arm->armMiddle());
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ArmPositionSwitch::IsFinished() {
-    return true || IsTimedOut();
+    return Robot::arm->OnTarget();
 }
 
 // Called once after isFinished returns true

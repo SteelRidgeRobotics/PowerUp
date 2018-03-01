@@ -24,18 +24,19 @@ ArmPositionFloor::ArmPositionFloor(): frc::Command() {
 
 // Called just before this Command runs the first time
 void ArmPositionFloor::Initialize() {
-Robot::arm->SetSetpoint(Robot::arm->armLow());
-Robot::arm->Enable();
+	std::cout << "ARMFLOOR" << std::endl;
+	Robot::arm->SetSetpoint(Robot::arm->armLow());
+	Robot::arm->Enable();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ArmPositionFloor::Execute() {
-	Robot::arm->SetSetpoint(Robot::arm->armLow());
+	//Robot::arm->SetSetpoint(Robot::arm->armLow());
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ArmPositionFloor::IsFinished() {
-    return false;
+    return Robot::arm->OnTarget();
 }
 
 // Called once after isFinished returns true

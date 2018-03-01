@@ -26,6 +26,7 @@ DriveWithEncoders::DriveWithEncoders(): frc::Command() {
 
 // Called just before this Command runs the first time
 void DriveWithEncoders::Initialize() {
+	std::cout << "AUTODRIVEFORWARD" << std::endl;
 	SetTimeout(7);
 	m_done = false;
 	Robot::driveTrain->encoderReset();

@@ -23,12 +23,12 @@ RollerStop::RollerStop(): frc::Command() {
 
 // Called just before this Command runs the first time
 void RollerStop::Initialize() {
-
+	std::cout << "ROLLERSTOP" << std::endl;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void RollerStop::Execute() {
-
+	Robot::intake->stopRollers();
 }
 
 // Make this return true when this Command no longer needs to run execute()

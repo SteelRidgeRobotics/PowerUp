@@ -15,6 +15,7 @@ UserArm::UserArm(): frc::Command() {
 
 // Called just before this Command runs the first time
 void UserArm::Initialize() {
+	std::cout << "CONTROLARM" << std::endl;
 
 }
 

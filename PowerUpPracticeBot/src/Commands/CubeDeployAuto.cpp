@@ -24,10 +24,7 @@ void CubeDeployAuto::Execute() {
 Robot::intake->autoDeploy();
 }
 
-// Make this return true when this Command no longer needs to run execute()
-bool CubeDeployAuto::IsFinished() {
-	return true;
-}
+
 
 // Called once after isFinished returns true
 void CubeDeployAuto::End() {
