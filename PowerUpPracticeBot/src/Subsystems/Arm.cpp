@@ -50,7 +50,7 @@ Arm::Arm() : frc::PIDSubsystem("Arm",5.0,0.0,0.0) {
 
     /*
      * SetAbsoluteTolerance sets how close to the
-     * setpoint is acceptable.
+     * setpoint is acceptable. nb
      */
     SetAbsoluteTolerance(0.05);
 
