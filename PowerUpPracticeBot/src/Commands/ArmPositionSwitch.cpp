@@ -40,11 +40,12 @@ bool ArmPositionSwitch::IsFinished() {
 
 // Called once after isFinished returns true
 void ArmPositionSwitch::End() {
-	Robot::arm->userArm(Robot::oi->getSideController());
+	Robot::arm->Disable();
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void ArmPositionSwitch::Interrupted() {
+	Robot::arm->SetSetpoint(Robot::arm->GetPosition());
  End();
 }
