@@ -28,7 +28,7 @@ void ControlArm::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ControlArm::Execute() {
-
+	Robot::arm->userArm(Robot::oi->getSideController());
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -44,5 +44,5 @@ void ControlArm::End() {
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void ControlArm::Interrupted() {
-
+End();
 }

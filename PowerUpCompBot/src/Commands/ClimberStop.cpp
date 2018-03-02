@@ -29,6 +29,7 @@ void ClimberStop::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ClimberStop::Execute() {
+	Robot::climber->climbStop();
 
 }
 

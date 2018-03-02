@@ -31,10 +31,13 @@ void AutoDeploy::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void AutoDeploy::Execute() {
+	Robot::intake->autoDeploy();
+
 }
 
 // Called once after command times out
 void AutoDeploy::End() {
+	Robot::intake->stopRollers();
 
 }
 

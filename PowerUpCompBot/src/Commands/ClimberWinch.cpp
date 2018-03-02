@@ -29,6 +29,7 @@ void ClimberWinch::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ClimberWinch::Execute() {
+	Robot::climber->climbUp();
 
 }
 

@@ -29,7 +29,7 @@ void ControlCube::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ControlCube::Execute() {
-
+	Robot::intake->controlCube(Robot::oi->getSideController());
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -39,7 +39,7 @@ bool ControlCube::IsFinished() {
 
 // Called once after isFinished returns true
 void ControlCube::End() {
-
+End();
 }
 
 // Called when another command which requires one or more of the same

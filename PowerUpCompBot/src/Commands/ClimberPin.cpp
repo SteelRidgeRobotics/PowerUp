@@ -31,6 +31,8 @@ void ClimberPin::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ClimberPin::Execute() {
+	Robot::climber->pinRelease();
+
 }
 
 // Called once after command times out
