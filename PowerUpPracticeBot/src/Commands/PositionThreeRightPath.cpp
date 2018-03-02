@@ -26,8 +26,6 @@ PositionThreeRightPath::PositionThreeRightPath(): frc::Command() {
 void PositionThreeRightPath::Initialize() {
 	std::cout << "POS3RPATH" << std::endl;
 	Robot::motionProfile->PeriodicTask();
-	Robot::motionProfile->reset();
-	//Robot::motionProfile->control();
 	Robot::motionProfile->initMotionProfile();
 	Robot::motionProfile->startFilling(kP3Right_leftprofile, kP3Right_rightprofile, kP3RightSz);
 
@@ -38,18 +36,17 @@ void PositionThreeRightPath::Execute() {
 	Robot::motionProfile->PeriodicTask();
 	Robot::motionProfile->control();
 	Robot::motionProfile->start();
-	//Robot::motionProfile->startFilling(kP3Right_leftprofile, kP3Right_rightprofile, kP3RightSz);
+
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool PositionThreeRightPath::IsFinished() {
-	if(Robot::motionProfile->_status.isLast==true){
-		return true;
-	}else {
-		return false;
-	}
+	return Robot::motionProfile->leftStatus.activePointValid && Robot::motionProfile->leftStatus.isLast &&
+			Robot::motionProfile->rightStatus.activePointValid && Robot::motionProfile->rightStatus.isLast;
 }
+
+
 // Called once after isFinished returns true
 void PositionThreeRightPath::End() {
 	Robot::motionProfile->reset();

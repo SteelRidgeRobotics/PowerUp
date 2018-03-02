@@ -28,6 +28,10 @@ MotionProfile::MotionProfile() : frc::Subsystem("MotionProfile"), _notifier(&Mot
 	leftFront = RobotMap::driveTrainLeftFront;
 	rightFront = RobotMap::driveTrainRightFront;
 
+	_notifier.StartPeriodic(0.025);
+
+	_setValue = SetValueMotionProfile::Disable;
+
 
 	_lpos = 0.0;
 	_rpos = 0.0;
@@ -36,7 +40,6 @@ MotionProfile::MotionProfile() : frc::Subsystem("MotionProfile"), _notifier(&Mot
 	_rvel=0.0;
 
 	_lheading=0.0;
-
 	_rheading=0.0;
 
 	_state = 0;
@@ -44,14 +47,6 @@ MotionProfile::MotionProfile() : frc::Subsystem("MotionProfile"), _notifier(&Mot
 	_loopTimeout = -1;
 
 	_bStart = false;
-
-
-
-	_setValue = SetValueMotionProfile::Disable;
-
-
-
-	_notifier.StartPeriodic(0.025);
 
 	leftFront->ChangeMotionControlFramePeriod(RobotMap::kProfilePeriodMs/2);
 	rightFront->ChangeMotionControlFramePeriod(RobotMap::kProfilePeriodMs/2);
@@ -87,18 +82,10 @@ void MotionProfile::PeriodicTask(){
 }
 
 void MotionProfile::initMotionProfile(){
-/* Removed for the time being...
-	 leftFront->Config_kF(RobotMap::kSlotIDx_Motion, RobotMap::kF_MotionLeft, RobotMap::kTimeoutMs);
-	 leftFront->Config_kP(RobotMap::kSlotIDx_Motion, RobotMap::kP_MotionLeft, RobotMap::kTimeoutMs);
-	 leftFront->Config_kI(RobotMap::kSlotIDx_Motion, RobotMap::kI_MotionLeft, RobotMap::kTimeoutMs);
-	 leftFront->Config_kD(RobotMap::kSlotIDx_Motion, RobotMap::kD_MotionLeft, RobotMap::kTimeoutMs);
 
+	leftFront->ChangeMotionControlFramePeriod(RobotMap::kProfilePeriodMs/2);
+	rightFront->ChangeMotionControlFramePeriod(RobotMap::kProfilePeriodMs/2);
 
-	 rightFront->Config_kF(RobotMap::kSlotIDx_Motion, RobotMap::kF_MotionRight, RobotMap::kTimeoutMs);
-	 rightFront->Config_kP(RobotMap::kSlotIDx_Motion, RobotMap::kP_MotionRight, RobotMap::kTimeoutMs);
-	 rightFront->Config_kI(RobotMap::kSlotIDx_Motion, RobotMap::kI_MotionRight, RobotMap::kTimeoutMs);
-	 rightFront->Config_kD(RobotMap::kSlotIDx_Motion, RobotMap::kD_MotionRight, RobotMap::kTimeoutMs);
-*/
 
 	leftFront->SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic, RobotMap::kProfilePeriodMs, 10);
 	rightFront->SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic,RobotMap::kProfilePeriodMs, 10);
@@ -107,12 +94,15 @@ void MotionProfile::initMotionProfile(){
 	leftFront->SelectProfileSlot(RobotMap::kSlotIDx_Motion, 0);
 	rightFront->SelectProfileSlot(RobotMap::kSlotIDx_Motion, 0);
 
+	leftFront->Set(ControlMode::MotionProfile, SetValueMotionProfile::Disable);
+	rightFront->Set(ControlMode::MotionProfile, SetValueMotionProfile::Disable);
 
+	leftFront->ClearMotionProfileTrajectories();
+	rightFront->ClearMotionProfileTrajectories();
 
 }
 
-void MotionProfile::reset()
-	{
+void MotionProfile::reset(){
 
 		 //Let's clear the buffer just in case user decided to disable in the
 		 //middle of an MP, and now we have the second half of a profile just
@@ -123,6 +113,7 @@ void MotionProfile::reset()
 
 	leftFront->ClearMotionProfileHasUnderrun(RobotMap::kTimeoutMs);
 	rightFront->ClearMotionProfileHasUnderrun(RobotMap::kTimeoutMs);
+
 		// When we do re-enter motionProfile control mode, stay disabled.
 		_setValue = SetValueMotionProfile::Disable;
 		// When we do start running our state machine start at the beginning.
@@ -139,8 +130,7 @@ void MotionProfile::reset()
 
 }
 
-void MotionProfile::control()
-	{
+void MotionProfile::control(){
 
 	SetValueMotionProfile setOutput = getSetValue();
 
@@ -201,7 +191,7 @@ void MotionProfile::control()
 						 //points
 
 					// do we have a minimum numberof points in Talon
-					if (_status.btmBufferCnt > kMinPointsInTalon) {
+					if (leftStatus.btmBufferCnt > kMinPointsInTalon || rightStatus.btmBufferCnt > kMinPointsInTalon) {
 						//start (once) the motion profile
 						_setValue = SetValueMotionProfile::Enable;
 						// MP will start once the control frame gets scheduled
@@ -215,7 +205,7 @@ void MotionProfile::control()
 					 //timeout. Really this is so that you can unplug your talon in
 					 //the middle of an MP and react to it.
 
-					if (_status.isUnderrun == false) {
+					if (leftStatus.isUnderrun == false || rightStatus.isUnderrun == false) {
 						_loopTimeout = kNumLoopsTimeout;
 					}
 
@@ -223,7 +213,7 @@ void MotionProfile::control()
 					// another. We will go into hold state so robot servo's
 					// position.
 
-					if (_status.activePointValid && _status.isLast) {
+					if ((leftStatus.activePointValid && leftStatus.isLast) || (rightStatus.activePointValid && rightStatus.isLast)) {
 
 						 //because we set the last point's isLast to true, we will
 						 // get here when the MP is done
@@ -236,8 +226,8 @@ void MotionProfile::control()
 			}
 
 			// Get the motion profile status every loop
-			leftFront->GetMotionProfileStatus(_status);
-			rightFront->GetMotionProfileStatus(_status);
+			leftFront->GetMotionProfileStatus(leftStatus);
+			rightFront->GetMotionProfileStatus(rightStatus);
 
 			_lheading = leftFront->GetActiveTrajectoryHeading();
 			_rheading = rightFront->GetActiveTrajectoryHeading();
@@ -248,8 +238,8 @@ void MotionProfile::control()
 			_lvel = leftFront->GetActiveTrajectoryVelocity();
 			_rvel = rightFront->GetActiveTrajectoryVelocity();
 
-			Instrumentation::Process(_status, _lpos, _lvel, _lheading);
-			Instrumentation::Process(_status, _rpos, _rvel, _rheading);
+			Instrumentation::Process(leftStatus, _lpos, _lvel, _lheading);
+			Instrumentation::Process(rightStatus, _rpos, _rvel, _rheading);
 
 
 		}
@@ -282,7 +272,7 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 			TrajectoryPoint rpoint;
 
 			// did we get an underrun condition since last time we checked ?
-			if(_status.hasUnderrun){
+			if(leftStatus.hasUnderrun || rightStatus.hasUnderrun){
 				// better log it so we know about it
 				Instrumentation::OnUnderrun();
 
@@ -290,8 +280,8 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 				 // "is underrun", because the former is cleared by the application.
 				 // That way, we never miss logging it.
 
-				leftFront->ClearMotionProfileHasUnderrun(10);
-				rightFront->ClearMotionProfileHasUnderrun(10);
+				leftFront->ClearMotionProfileHasUnderrun(RobotMap::kTimeoutMs);
+				rightFront->ClearMotionProfileHasUnderrun(RobotMap::kTimeoutMs);
 			}
 
 
@@ -302,8 +292,8 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 			rightFront->ClearMotionProfileTrajectories();
 
 			// set the base trajectory period to zero, use the individual trajectory period below
-			leftFront->ConfigMotionProfileTrajectoryPeriod(0, 10);
-			rightFront->ConfigMotionProfileTrajectoryPeriod(0, 10);
+			leftFront->ConfigMotionProfileTrajectoryPeriod(0, RobotMap::kTimeoutMs);
+			rightFront->ConfigMotionProfileTrajectoryPeriod(0, RobotMap::kTimeoutMs);
 
 			// This is fast since it's just into our TOP buffer
 			for(int i=0;i<totalCnt;++i){
@@ -323,12 +313,14 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 
 				if (i == 0){
 					lpoint.zeroPos = true; // set this to true on the first point
-					lpoint.isLastPoint = false;
 				}
+
+				lpoint.isLastPoint = false;
 
 
 				if ((i + 1) == totalCnt){
-					lpoint.isLastPoint = true; // set this to true on the last point
+					// set this to true on the last point
+					lpoint.isLastPoint = true;
 				}
 
 				leftFront->PushMotionProfileTrajectory(lpoint);
@@ -349,8 +341,10 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 				if (j == 0){
 					// set this to true on the first point
 					rpoint.zeroPos = true;
-					rpoint.isLastPoint = false;
 				}
+
+				rpoint.isLastPoint = false;
+
 
 				if ((j + 1) == totalCnt){
 					// set this to true on the last point
