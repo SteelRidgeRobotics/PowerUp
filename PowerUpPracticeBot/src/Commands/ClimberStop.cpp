@@ -23,7 +23,7 @@ ClimberStop::ClimberStop(): frc::Command() {
 
 // Called just before this Command runs the first time
 void ClimberStop::Initialize() {
-
+	std::cout << "CLIMBSTOP" << std::endl;
 }
 
 // Called repeatedly when this Command is scheduled to run

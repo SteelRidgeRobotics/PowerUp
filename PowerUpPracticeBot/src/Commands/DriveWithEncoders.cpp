@@ -26,6 +26,7 @@ DriveWithEncoders::DriveWithEncoders(): frc::Command() {
 
 // Called just before this Command runs the first time
 void DriveWithEncoders::Initialize() {
+	std::cout << "AUTODRIVEFORWARD" << std::endl;
 	SetTimeout(7);
 	m_done = false;
 	Robot::driveTrain->encoderReset();
@@ -33,13 +34,13 @@ void DriveWithEncoders::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void DriveWithEncoders::Execute() {
-Robot::driveTrain->encoderPosition(10,10);
+Robot::driveTrain->encoderPosition(3000,3000);
 Robot::driveTrain->isMove();
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool DriveWithEncoders::IsFinished() {
-    return m_done || IsTimedOut();;
+    return m_done || IsTimedOut();
 }
 
 // Called once after isFinished returns true

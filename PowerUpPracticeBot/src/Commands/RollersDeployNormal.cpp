@@ -23,7 +23,7 @@ RollersDeployNormal::RollersDeployNormal(): frc::Command() {
 
 // Called just before this Command runs the first time
 void RollersDeployNormal::Initialize() {
-
+	std::cout << "CONTROLCUBE" << std::endl;
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -38,11 +38,11 @@ bool RollersDeployNormal::IsFinished() {
 
 // Called once after isFinished returns true
 void RollersDeployNormal::End() {
-
+	Robot::intake->stopRollers();
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void RollersDeployNormal::Interrupted() {
-
+	End();
 }

@@ -24,6 +24,10 @@ PositionThreeRightPath::PositionThreeRightPath(): frc::Command() {
 
 // Called just before this Command runs the first time
 void PositionThreeRightPath::Initialize() {
+	std::cout << "POS3RPATH" << std::endl;
+	Robot::motionProfile->PeriodicTask();
+	Robot::motionProfile->reset();
+	Robot::motionProfile->control();
 	Robot::motionProfile->initMotionProfile();
 	Robot::motionProfile->startFilling(kP3Right_leftprofile, kP3Right_rightprofile, kP3RightSz);
 
@@ -34,6 +38,7 @@ void PositionThreeRightPath::Execute() {
 	Robot::motionProfile->PeriodicTask();
 	Robot::motionProfile->control();
 	Robot::motionProfile->start();
+	//Robot::motionProfile->startFilling(kP3Right_leftprofile, kP3Right_rightprofile, kP3RightSz);
 
 }
 
@@ -53,5 +58,5 @@ void PositionThreeRightPath::End() {
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void PositionThreeRightPath::Interrupted() {
-
+	End();
 }

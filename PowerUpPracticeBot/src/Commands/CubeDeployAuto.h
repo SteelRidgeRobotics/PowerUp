@@ -11,12 +11,11 @@
 #include "Commands/Subsystem.h"
 #include "../Robot.h"
 
-class CubeDeployAuto : public frc::Command {
+class CubeDeployAuto : public frc::TimedCommand {
 public:
-	CubeDeployAuto();
+	CubeDeployAuto(double timeout);
 	void Initialize() override;
 	void Execute() override;
-	bool IsFinished() override;
 	void End() override;
 	void Interrupted() override;
 };

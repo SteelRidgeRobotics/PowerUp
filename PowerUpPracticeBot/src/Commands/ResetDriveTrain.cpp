@@ -23,6 +23,7 @@ ResetDriveTrain::ResetDriveTrain(): frc::Command() {
 
 // Called just before this Command runs the first time
 void ResetDriveTrain::Initialize() {
+	std::cout << "RESETDRIVETRAIN" << std::endl;
 
 }
 
@@ -34,16 +35,16 @@ Robot::driveTrain->encoderDone();
 
 // Make this return true when this Command no longer needs to run execute()
 bool ResetDriveTrain::IsFinished() {
-    return false;
+    return true;
 }
 
 // Called once after isFinished returns true
 void ResetDriveTrain::End() {
-
+	Robot::driveTrain->userDrive(Robot::oi->getMainController());
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void ResetDriveTrain::Interrupted() {
-
+End();
 }

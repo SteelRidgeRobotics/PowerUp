@@ -7,7 +7,7 @@
 
 #include "CubeDeployAuto.h"
 
-CubeDeployAuto::CubeDeployAuto(): frc::Command() {
+CubeDeployAuto::CubeDeployAuto(double timeout): frc::TimedCommand(timeout) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(Robot::intake.get());
@@ -15,6 +15,7 @@ CubeDeployAuto::CubeDeployAuto(): frc::Command() {
 
 // Called just before this Command runs the first time
 void CubeDeployAuto::Initialize() {
+	std::cout << "CUBEAUTODEPLOY" << std::endl;
 
 }
 
@@ -23,10 +24,7 @@ void CubeDeployAuto::Execute() {
 Robot::intake->autoDeploy();
 }
 
-// Make this return true when this Command no longer needs to run execute()
-bool CubeDeployAuto::IsFinished() {
-	return false;
-}
+
 
 // Called once after isFinished returns true
 void CubeDeployAuto::End() {
