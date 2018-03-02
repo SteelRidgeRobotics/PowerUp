@@ -66,7 +66,7 @@ private:
 
 	bool _bStart;
 
-	static const int kMinPointsInTalon =5; //These variables should probably be moved to RobotMap.h.
+	static const int kMinPointsInTalon =1; //These variables should probably be moved to RobotMap.h.
 
 	static const int kNumLoopsTimeout=10;
 

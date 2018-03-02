@@ -120,6 +120,9 @@ void MotionProfile::reset()
 
 	leftFront->ClearMotionProfileTrajectories();
 	rightFront->ClearMotionProfileTrajectories();
+
+	leftFront->ClearMotionProfileHasUnderrun(RobotMap::kTimeoutMs);
+	rightFront->ClearMotionProfileHasUnderrun(RobotMap::kTimeoutMs);
 		// When we do re-enter motionProfile control mode, stay disabled.
 		_setValue = SetValueMotionProfile::Disable;
 		// When we do start running our state machine start at the beginning.
@@ -318,16 +321,15 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 				lpoint.zeroPos = false;
 
 
-				if (i == 0)
+				if (i == 0){
 					lpoint.zeroPos = true; // set this to true on the first point
+					lpoint.isLastPoint = false;
+				}
 
 
-				lpoint.isLastPoint = false;
-
-
-				if ((i + 1) == totalCnt)
+				if ((i + 1) == totalCnt){
 					lpoint.isLastPoint = true; // set this to true on the last point
-
+				}
 
 				leftFront->PushMotionProfileTrajectory(lpoint);
 
@@ -344,15 +346,16 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 				rpoint.timeDur = GetTrajectoryDuration((int) rightprofile[j][2]);
 				rpoint.zeroPos = false;
 
-				if (j == 0)
+				if (j == 0){
 					// set this to true on the first point
 					rpoint.zeroPos = true;
-
 					rpoint.isLastPoint = false;
+				}
 
-				if ((j + 1) == totalCnt)
+				if ((j + 1) == totalCnt){
 					// set this to true on the last point
 					rpoint.isLastPoint = true;
+				}
 
 
 				rightFront->PushMotionProfileTrajectory(rpoint);
@@ -381,4 +384,5 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 	double MotionProfile::velToRotations(double ftpersec){
 		return ftToRotations(ftpersec)*60;
 	}
+
 

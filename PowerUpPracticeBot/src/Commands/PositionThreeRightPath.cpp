@@ -27,7 +27,7 @@ void PositionThreeRightPath::Initialize() {
 	std::cout << "POS3RPATH" << std::endl;
 	Robot::motionProfile->PeriodicTask();
 	Robot::motionProfile->reset();
-	Robot::motionProfile->control();
+	//Robot::motionProfile->control();
 	Robot::motionProfile->initMotionProfile();
 	Robot::motionProfile->startFilling(kP3Right_leftprofile, kP3Right_rightprofile, kP3RightSz);
 
