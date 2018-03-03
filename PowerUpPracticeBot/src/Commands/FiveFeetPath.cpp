@@ -17,27 +17,28 @@ FiveFeetPath::FiveFeetPath() {
 // Called just before this Command runs the first time
 void FiveFeetPath::Initialize() {
 	std::cout << "5FEETPATH" << std::endl;
-			Robot::motionProfile->PeriodicTask();
-			Robot::motionProfile->initMotionProfile();
-			Robot::motionProfile->startFilling(k5Feet_leftprofile, k5Feet_rightprofile, k5FeetSz);
+	Robot::motionProfile->initMotionProfile();
+	Robot::motionProfile->startFilling(k5Feet_leftprofile, k5Feet_rightprofile, k5FeetSz);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void FiveFeetPath::Execute() {
 	Robot::motionProfile->PeriodicTask();
-		Robot::motionProfile->control();
-		Robot::motionProfile->start();
+	Robot::motionProfile->control();
+	Robot::motionProfile->start();
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool FiveFeetPath::IsFinished() {
-	return Robot::motionProfile->leftStatus.activePointValid && Robot::motionProfile->leftStatus.isLast &&
-					Robot::motionProfile->rightStatus.activePointValid && Robot::motionProfile->rightStatus.isLast;
+
+	return Robot::motionProfile->profileDone();
 }
 
 // Called once after isFinished returns true
 void FiveFeetPath::End() {
+
 	Robot::motionProfile->reset();
+
 }
 
 // Called when another command which requires one or more of the same

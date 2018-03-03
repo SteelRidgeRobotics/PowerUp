@@ -25,9 +25,8 @@ DoNothingPath::DoNothingPath(): frc::Command() {
 // Called just before this Command runs the first time
 void DoNothingPath::Initialize() {
 	std::cout << "NOPATH" << std::endl;
-		Robot::motionProfile->PeriodicTask();
-		Robot::motionProfile->initMotionProfile();
-		Robot::motionProfile->startFilling(kNoPath_leftprofile, kNoPath_rightprofile, kNoPathSz);
+	Robot::motionProfile->initMotionProfile();
+	Robot::motionProfile->startFilling(kNoPath_leftprofile, kNoPath_rightprofile, kNoPathSz);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -39,8 +38,8 @@ void DoNothingPath::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool DoNothingPath::IsFinished() {
-	return Robot::motionProfile->leftStatus.activePointValid && Robot::motionProfile->leftStatus.isLast &&
-				Robot::motionProfile->rightStatus.activePointValid && Robot::motionProfile->rightStatus.isLast;
+
+	return Robot::motionProfile->profileDone();
 }
 
 // Called once after isFinished returns true

@@ -38,7 +38,7 @@ void PositionOneRightPath::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool PositionOneRightPath::IsFinished() {
-	if(Robot::motionProfile->_status.isLast==true){
+	if(Robot::motionProfile->leftStatus.isLast==true){
 		return true;
 	}
 	else{

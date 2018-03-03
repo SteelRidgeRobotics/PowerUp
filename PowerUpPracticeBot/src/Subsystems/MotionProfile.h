@@ -82,6 +82,8 @@ private:
 
 	void control(); //Method that controls the motion profile.
 
+	bool profileDone();
+
 	void startFilling(const double leftprofile[][3], const double rightprofile[][3], int totalCnt); //Method to fill the talons with points.
 
 	void start(); //Method to start the motion profile.

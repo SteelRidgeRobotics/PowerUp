@@ -25,7 +25,6 @@ PositionThreeRightPath::PositionThreeRightPath(): frc::Command() {
 // Called just before this Command runs the first time
 void PositionThreeRightPath::Initialize() {
 	std::cout << "POS3RPATH" << std::endl;
-	Robot::motionProfile->PeriodicTask();
 	Robot::motionProfile->initMotionProfile();
 	Robot::motionProfile->startFilling(kP3Right_leftprofile, kP3Right_rightprofile, kP3RightSz);
 
@@ -42,8 +41,7 @@ void PositionThreeRightPath::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool PositionThreeRightPath::IsFinished() {
-	return Robot::motionProfile->leftStatus.activePointValid && Robot::motionProfile->leftStatus.isLast &&
-			Robot::motionProfile->rightStatus.activePointValid && Robot::motionProfile->rightStatus.isLast;
+	return Robot::motionProfile->profileDone();
 }
 
 

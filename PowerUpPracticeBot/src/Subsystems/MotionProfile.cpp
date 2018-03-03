@@ -94,8 +94,8 @@ void MotionProfile::initMotionProfile(){
 	leftFront->SelectProfileSlot(RobotMap::kSlotIDx_Motion, 0);
 	rightFront->SelectProfileSlot(RobotMap::kSlotIDx_Motion, 0);
 
-	leftFront->Set(ControlMode::MotionProfile, SetValueMotionProfile::Disable);
-	rightFront->Set(ControlMode::MotionProfile, SetValueMotionProfile::Disable);
+	leftFront->Set(ControlMode::MotionProfile, SetValueMotionProfile::Hold);
+	rightFront->Set(ControlMode::MotionProfile, SetValueMotionProfile::Hold);
 
 	leftFront->ClearMotionProfileTrajectories();
 	rightFront->ClearMotionProfileTrajectories();
@@ -243,7 +243,19 @@ void MotionProfile::control(){
 
 
 		}
+
 	}
+
+bool MotionProfile::profileDone(){
+
+	if(rightStatus.activePointValid && rightStatus.isLast && leftStatus.activePointValid
+			&& leftStatus.isLast){
+
+		return true;
+	}
+	else
+		return false;
+}
 
 TrajectoryDuration GetTrajectoryDuration(int durationMs)
 	{
@@ -270,7 +282,7 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 			// create an empty point
 			TrajectoryPoint lpoint;
 			TrajectoryPoint rpoint;
-
+/*
 			// did we get an underrun condition since last time we checked ?
 			if(leftStatus.hasUnderrun || rightStatus.hasUnderrun){
 				// better log it so we know about it
@@ -284,12 +296,14 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 				rightFront->ClearMotionProfileHasUnderrun(RobotMap::kTimeoutMs);
 			}
 
+*/
+
 
 			 // just in case we are interrupting another MP and there is still buffer
 			 // points in memory, clear it.
 
-			leftFront->ClearMotionProfileTrajectories();
-			rightFront->ClearMotionProfileTrajectories();
+			//leftFront->ClearMotionProfileTrajectories();
+			//rightFront->ClearMotionProfileTrajectories();
 
 			// set the base trajectory period to zero, use the individual trajectory period below
 			leftFront->ConfigMotionProfileTrajectoryPeriod(0, RobotMap::kTimeoutMs);
