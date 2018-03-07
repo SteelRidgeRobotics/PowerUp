@@ -31,6 +31,7 @@ void PositionTwoLeftPath::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void PositionTwoLeftPath::Execute() {
+	std::cout << "POS2LPATH" << std::endl;
 	Robot::motionProfile->PeriodicTask();
 	Robot::motionProfile->control();
 	Robot::motionProfile->start();
@@ -39,11 +40,7 @@ void PositionTwoLeftPath::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool PositionTwoLeftPath::IsFinished() {
-	if (Robot::motionProfile->leftStatus.isLast==true){
-		return true;
-	}else {
-    return false;
-    }
+	return Robot::motionProfile->profileDone();
 }
 
 // Called once after isFinished returns true

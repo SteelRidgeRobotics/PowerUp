@@ -87,14 +87,15 @@ void Robot::AutonomousPeriodic() {
 
 	/*Put data to the smart dashboard*/
 
-	SmartDashboard::PutNumber("Left Error", RobotMap::driveTrainLeftFront->GetClosedLoopError(0));
-		SmartDashboard::PutNumber("Right Error", RobotMap::driveTrainRightFront->GetClosedLoopError(0));
-		SmartDashboard::PutNumber("Left Encoder Position", RobotMap::driveTrainLeftFront->GetSelectedSensorPosition(0));
-		SmartDashboard::PutNumber("Right Encoder Position", RobotMap::driveTrainRightFront->GetSelectedSensorPosition(0));
-		SmartDashboard::PutNumber("Left Encoder Speed", RobotMap::driveTrainLeftFront->GetSelectedSensorVelocity(0));
-		SmartDashboard::PutNumber("Right Encoder Speed", RobotMap::driveTrainRightFront->GetSelectedSensorVelocity(0));
-		SmartDashboard::PutNumber("Arm PID", RobotMap::armArmPositionSensor->PIDGet());
-		SmartDashboard::PutNumber("Arm Pot Voltage", RobotMap::armArmPositionSensor->Get());
+		SmartDashboard::PutNumber("L_CLError", RobotMap::driveTrainLeftFront->GetClosedLoopError(0));
+		SmartDashboard::PutNumber("R_CLError", RobotMap::driveTrainRightFront->GetClosedLoopError(0));
+		SmartDashboard::PutNumber("L_MPError", RobotMap::driveTrainLeftFront->GetClosedLoopError(1));
+		SmartDashboard::PutNumber("R_MPError", RobotMap::driveTrainRightFront->GetClosedLoopError(1));
+		SmartDashboard::PutNumber("L_Pos", RobotMap::driveTrainLeftFront->GetSelectedSensorPosition(0));
+		SmartDashboard::PutNumber("R_Pos", RobotMap::driveTrainRightFront->GetSelectedSensorPosition(0));
+		SmartDashboard::PutNumber("L_Speed", RobotMap::driveTrainLeftFront->GetSelectedSensorVelocity(0));
+		SmartDashboard::PutNumber("R_Speed", RobotMap::driveTrainRightFront->GetSelectedSensorVelocity(0));
+		SmartDashboard::PutNumber("Arm_V", RobotMap::armArmPositionSensor->Get());
 }
 
 void Robot::TeleopInit() {
@@ -111,15 +112,15 @@ void Robot::TeleopPeriodic() {
 
 	/*Put data to the smart dashboard*/
 
-	SmartDashboard::PutNumber("Left Error", RobotMap::driveTrainLeftFront->GetClosedLoopError(0));
-	SmartDashboard::PutNumber("Right Error", RobotMap::driveTrainRightFront->GetClosedLoopError(0));
-	SmartDashboard::PutNumber("Left Encoder Position", RobotMap::driveTrainLeftFront->GetSelectedSensorPosition(0));
-	SmartDashboard::PutNumber("Right Encoder Position", RobotMap::driveTrainRightFront->GetSelectedSensorPosition(0));
-	SmartDashboard::PutNumber("Left Encoder Speed", RobotMap::driveTrainLeftFront->GetSelectedSensorVelocity(0));
-	SmartDashboard::PutNumber("Right Encoder Speed", RobotMap::driveTrainRightFront->GetSelectedSensorVelocity(0));
-	SmartDashboard::PutNumber("Arm PID", RobotMap::armArmPositionSensor->PIDGet());
-	SmartDashboard::PutNumber("Arm Pot Voltage", RobotMap::armArmPositionSensor->Get());
-
+	SmartDashboard::PutNumber("L_CLError", RobotMap::driveTrainLeftFront->GetClosedLoopError(0));
+	SmartDashboard::PutNumber("R_CLError", RobotMap::driveTrainRightFront->GetClosedLoopError(0));
+	SmartDashboard::PutNumber("L_MPError", RobotMap::driveTrainLeftFront->GetClosedLoopError(1));
+	SmartDashboard::PutNumber("R_MPError", RobotMap::driveTrainRightFront->GetClosedLoopError(1));
+	SmartDashboard::PutNumber("L_Pos", RobotMap::driveTrainLeftFront->GetSelectedSensorPosition(0));
+	SmartDashboard::PutNumber("R_Pos", RobotMap::driveTrainRightFront->GetSelectedSensorPosition(0));
+	SmartDashboard::PutNumber("L_Speed", RobotMap::driveTrainLeftFront->GetSelectedSensorVelocity(0));
+	SmartDashboard::PutNumber("R_Speed", RobotMap::driveTrainRightFront->GetSelectedSensorVelocity(0));
+	SmartDashboard::PutNumber("Arm_V", RobotMap::armArmPositionSensor->Get());
 
 }
 

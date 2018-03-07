@@ -24,6 +24,7 @@ PositionTwoRightPath::PositionTwoRightPath(): frc::Command() {
 
 // Called just before this Command runs the first time
 void PositionTwoRightPath::Initialize() {
+	std::cout << "POS2RPATH" << std::endl;
 	Robot::motionProfile->initMotionProfile();
 	Robot::motionProfile->startFilling(kP2Right_leftprofile, kP2Right_leftprofile, kP2RightSz);
 
@@ -39,11 +40,7 @@ void PositionTwoRightPath::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool PositionTwoRightPath::IsFinished() {
-	if(Robot::motionProfile->leftStatus.isLast==true){
-		return true;
-	}else {
-		return false;
-	}
+	return Robot::motionProfile->profileDone();
 }
 
 // Called once after isFinished returns true

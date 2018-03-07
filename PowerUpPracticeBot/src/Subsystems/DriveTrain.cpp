@@ -68,8 +68,8 @@ void DriveTrain::userDrive(std::shared_ptr<Joystick>mainController) {
 		right_y = -0.5*mainController->GetRawAxis(5);
 	}
 
-	leftFront->Set(ControlMode::PercentOutput, left_y);
-	rightFront->Set(ControlMode::PercentOutput, right_y);
+		leftFront->Set(ControlMode::PercentOutput, left_y);
+		rightFront->Set(ControlMode::PercentOutput, right_y);
 
 }
 

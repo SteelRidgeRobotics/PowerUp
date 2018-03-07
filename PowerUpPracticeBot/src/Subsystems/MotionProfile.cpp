@@ -386,11 +386,13 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 		}
 
 	double MotionProfile::ftToRotations(double ft){
-		return ft*RobotMap::kGearRatio*RobotMap::kSensorUnitsPerRotation*(1/RobotMap::kWheelDiam)*(1/M_PI);
+		double fudgeFactor = 1.15;
+		return ft*RobotMap::kGearRatio*RobotMap::kSensorUnitsPerRotation*(1/RobotMap::kWheelDiam)*(1/M_PI)*fudgeFactor;
 	}
 
 	double MotionProfile::velToRotations(double ftpersec){
-		return ftToRotations(ftpersec)*60;
+		double fudgeFactor = 1.15;
+		return ftToRotations(ftpersec)*60*fudgeFactor;
 	}
 
 
