@@ -62,7 +62,7 @@ public:
 
 	static constexpr double kF_CloopLeft = 0.0; //Feed forward gain
 
-	static constexpr double kP_CloopLeft = 0.0; //Proportional gain
+	static constexpr double kP_CloopLeft = 0.5; //Proportional gain. This is just a start and needs tuning.
 
 	static constexpr double kI_CloopLeft = 0.0; //Integral gain
 
@@ -70,7 +70,7 @@ public:
 
 	static constexpr double kF_CloopRight = 0.0; //Feed forward gain
 
-	static constexpr double kP_CloopRight = 0.0; //Proportional gain
+	static constexpr double kP_CloopRight = 0.5; //Proportional gain. This is just a start and needs tuning.
 
 	static constexpr double kI_CloopRight = 0.0; //Integral gain
 
@@ -78,17 +78,17 @@ public:
 
 	//Motion Profile PID_F constants
 
-	static constexpr double kF_MotionLeft = 0.0; //Feed forward gain
+	static constexpr double kF_MotionLeft = 2.0; //Feed forward gain. This is just a start and needs tuning.
 
-	static constexpr double kP_MotionLeft = 0.0; //Proportional gain
+	static constexpr double kP_MotionLeft = 1.0; //Proportional gain. This is just a start and needs tuning.
 
 	static constexpr double kI_MotionLeft = 0.0; //Integral gain
 
 	static constexpr double kD_MotionLeft = 0.0; // Derivative gain
 
-	static constexpr double kF_MotionRight = 0.0; //Feed forward gain
+	static constexpr double kF_MotionRight = 2.0; //Feed forward gain. This is just a start and needs tuning.
 
-	static constexpr double kP_MotionRight = 0.0; //Proportional gain
+	static constexpr double kP_MotionRight = 1.0; //Proportional gain. This is just a start and needs tuning.
 
 	static constexpr double kI_MotionRight = 0.0; //Integral gain
 

@@ -81,9 +81,25 @@ void Robot::DisabledPeriodic() {
 
 void Robot::AutonomousInit() {
 
+	/*
+	 * Keep trying to get driverstation information.
+	 */
+
+	while(gameData.length() < 3){
+		gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
+	}
+
+	/*
+	 * Use information from driverstation and auto chooser
+	 * to complete autonomous.
+	 */
+
 	std::string selectedAuto;
+
 	selectedAuto = chooser.GetSelected();
+
 	std::cout << "GameData:" << gameData <<std::endl;
+
 	if(selectedAuto == "Pos1Switch"){
 		if(gameData.length() == 3){
 			if(gameData.at(0) == 'L') {
@@ -93,7 +109,7 @@ void Robot::AutonomousInit() {
 				autonomousCommand = new CrossTheLine();
 		}
 		else
-			autonomousCommand = new DoNothing();
+			autonomousCommand = new CrossTheLine();
 	}
 
 	if (selectedAuto == "Pos2Switch"){
@@ -117,7 +133,7 @@ void Robot::AutonomousInit() {
 					autonomousCommand = new CrossTheLine();
 			}
 			else
-				autonomousCommand = new DoNothing();
+				autonomousCommand = new CrossTheLine();
 		}
 
 	if(selectedAuto == "CrossTheLine"){
@@ -141,8 +157,6 @@ void Robot::AutonomousPeriodic() {
 
 	frc::SmartDashboard::PutNumber("L_CLError", RobotMap::driveTrainLeftFront->GetClosedLoopError(0));
 	frc::SmartDashboard::PutNumber("R_CLError", RobotMap::driveTrainRightFront->GetClosedLoopError(0));
-	frc::SmartDashboard::PutNumber("L_MPError", RobotMap::driveTrainLeftFront->GetClosedLoopError(1));
-	frc::SmartDashboard::PutNumber("R_MPError", RobotMap::driveTrainRightFront->GetClosedLoopError(1));
 	frc::SmartDashboard::PutNumber("L_Pos", RobotMap::driveTrainLeftFront->GetSelectedSensorPosition(0));
 	frc::SmartDashboard::PutNumber("R_Pos", RobotMap::driveTrainRightFront->GetSelectedSensorPosition(0));
 	frc::SmartDashboard::PutNumber("L_Speed", RobotMap::driveTrainLeftFront->GetSelectedSensorVelocity(0));
@@ -162,14 +176,13 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() {
 	frc::Scheduler::GetInstance()->Run();
 
-	SmartDashboard::PutNumber("Left Error", RobotMap::driveTrainLeftFront->GetClosedLoopError(0));
-	SmartDashboard::PutNumber("Right Error", RobotMap::driveTrainRightFront->GetClosedLoopError(0));
-	SmartDashboard::PutNumber("Left Encoder Position", RobotMap::driveTrainLeftFront->GetSelectedSensorPosition(0));
-	SmartDashboard::PutNumber("Right Encoder Position", RobotMap::driveTrainRightFront->GetSelectedSensorPosition(0));
-	SmartDashboard::PutNumber("Left Encoder Speed", RobotMap::driveTrainLeftFront->GetSelectedSensorVelocity(0));
-	SmartDashboard::PutNumber("Right Encoder Speed", RobotMap::driveTrainRightFront->GetSelectedSensorVelocity(0));
-	SmartDashboard::PutNumber("Arm PID", RobotMap::armArmPositionSensor->PIDGet());
-	SmartDashboard::PutNumber("Arm Pot Voltage", RobotMap::armArmPositionSensor->Get());
+	frc::SmartDashboard::PutNumber("L_CLError", RobotMap::driveTrainLeftFront->GetClosedLoopError(0));
+	frc::SmartDashboard::PutNumber("R_CLError", RobotMap::driveTrainRightFront->GetClosedLoopError(0));
+	frc::SmartDashboard::PutNumber("L_Pos", RobotMap::driveTrainLeftFront->GetSelectedSensorPosition(0));
+	frc::SmartDashboard::PutNumber("R_Pos", RobotMap::driveTrainRightFront->GetSelectedSensorPosition(0));
+	frc::SmartDashboard::PutNumber("L_Speed", RobotMap::driveTrainLeftFront->GetSelectedSensorVelocity(0));
+	frc::SmartDashboard::PutNumber("R_Speed", RobotMap::driveTrainRightFront->GetSelectedSensorVelocity(0));
+	frc::SmartDashboard::PutNumber("Arm_V", RobotMap::armArmPositionSensor->Get());
 
 }
 
