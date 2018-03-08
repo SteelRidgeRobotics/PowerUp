@@ -26,7 +26,7 @@ PositionTwoRightPath::PositionTwoRightPath(): frc::Command() {
 void PositionTwoRightPath::Initialize() {
 	std::cout << "POS2RPATH" << std::endl;
 	Robot::motionProfile->initMotionProfile();
-	Robot::motionProfile->startFilling(kP2Right_leftprofile, kP2Right_leftprofile, kP2RightSz);
+	Robot::motionProfile->startFilling(kP2Right_leftprofile, kP2Right_rightprofile, kP2RightSz);
 
 }
 
