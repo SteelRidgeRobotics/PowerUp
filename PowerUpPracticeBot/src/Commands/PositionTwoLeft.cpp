@@ -43,7 +43,7 @@ PositionTwoLeft::PositionTwoLeft() {
     AddSequential(new ArmPositionSwitch());
     AddSequential(new DoNothingPath());
     AddSequential(new WaitCommand(2.0));
-    AddSequential(new PositionTwoRightPath());
+    AddSequential(new PositionTwoLeftPath());
     AddSequential(new WaitCommand(1.0));
     AddSequential(new CubeDeployAuto(1.0));
  }

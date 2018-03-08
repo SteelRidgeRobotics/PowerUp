@@ -80,17 +80,17 @@ public:
 
 	//Motion Profile PID_F constants
 
-	static constexpr double kF_MotionLeft = 1.68; //Feed forward gain
+	static constexpr double kF_MotionLeft = 1.8; //Feed forward gain
 
-	static constexpr double kP_MotionLeft = 0.15; //Proportional gain
+	static constexpr double kP_MotionLeft = 0.8; //Proportional gain
 
 	static constexpr double kI_MotionLeft = 0.0; //Integral gain
 
 	static constexpr double kD_MotionLeft = 0.0; // Derivative gain
 
-	static constexpr double kF_MotionRight = 1.64; //Feed forward gain
+	static constexpr double kF_MotionRight = 2.0; //Feed forward gain
 
-	static constexpr double kP_MotionRight = 0.13; //Proportional gain
+	static constexpr double kP_MotionRight = 1.1; //Proportional gain
 
 	static constexpr double kI_MotionRight = 0.0; //Integral gain
 

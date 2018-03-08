@@ -282,7 +282,7 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 			// create an empty point
 			TrajectoryPoint lpoint;
 			TrajectoryPoint rpoint;
-/*
+
 			// did we get an underrun condition since last time we checked ?
 			if(leftStatus.hasUnderrun || rightStatus.hasUnderrun){
 				// better log it so we know about it
@@ -296,14 +296,14 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 				rightFront->ClearMotionProfileHasUnderrun(RobotMap::kTimeoutMs);
 			}
 
-*/
+
 
 
 			 // just in case we are interrupting another MP and there is still buffer
 			 // points in memory, clear it.
 
-			//leftFront->ClearMotionProfileTrajectories();
-			//rightFront->ClearMotionProfileTrajectories();
+			leftFront->ClearMotionProfileTrajectories();
+			rightFront->ClearMotionProfileTrajectories();
 
 			// set the base trajectory period to zero, use the individual trajectory period below
 			leftFront->ConfigMotionProfileTrajectoryPeriod(0, RobotMap::kTimeoutMs);
@@ -386,7 +386,7 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 		}
 
 	double MotionProfile::ftToRotations(double ft){
-		double fudgeFactor = 1.15;
+		double fudgeFactor = 1.00;
 		return ft*RobotMap::kGearRatio*RobotMap::kSensorUnitsPerRotation*(1/RobotMap::kWheelDiam)*(1/M_PI)*fudgeFactor;
 	}
 
