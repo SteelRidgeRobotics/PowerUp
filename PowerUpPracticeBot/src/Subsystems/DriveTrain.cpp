@@ -64,8 +64,8 @@ void DriveTrain::userDrive(std::shared_ptr<Joystick>mainController) {
 	int l_bump = mainController->GetRawButton(5);
 
 	if(l_bump == 1) {
-		left_y = -0.5*mainController->GetRawAxis(1);
-		right_y = -0.5*mainController->GetRawAxis(5);
+		left_y = -0.6*mainController->GetRawAxis(1);
+		right_y = -0.6*mainController->GetRawAxis(5);
 	}
 
 		leftFront->Set(ControlMode::PercentOutput, left_y);
@@ -74,8 +74,8 @@ void DriveTrain::userDrive(std::shared_ptr<Joystick>mainController) {
 }
 
 void DriveTrain::encoderPosition(double left, double right){
-	leftFront->Set(ControlMode::Position, (left));
-	rightFront->Set(ControlMode::Position, (right));
+	leftFront->Set(ControlMode::Position, ftToRotations(left));
+	rightFront->Set(ControlMode::Position, ftToRotations(right));
 
 
 	l_pos = left;
