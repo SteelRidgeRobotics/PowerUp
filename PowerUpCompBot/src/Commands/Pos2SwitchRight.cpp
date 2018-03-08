@@ -47,6 +47,7 @@ Pos2SwitchRight::Pos2SwitchRight() {
     AddSequential(new DoNothingPath());
     AddSequential(new WaitCommand(2.0));
     AddSequential(new P2R_Path());
+    AddSequential(new WaitCommand(1.0));
     AddSequential(new AutoDeploy(1.0));
 
 

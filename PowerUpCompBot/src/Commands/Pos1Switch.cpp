@@ -51,6 +51,7 @@ Pos1Switch::Pos1Switch() {
         AddSequential(new DoNothingPath());
         AddSequential(new WaitCommand(2.0));
         AddSequential(new P1L_Path());
+        AddSequential(new WaitCommand(1.0));
         AddSequential(new AutoDeploy(1.0));
 
 

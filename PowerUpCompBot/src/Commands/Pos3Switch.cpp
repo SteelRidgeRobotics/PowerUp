@@ -53,6 +53,7 @@ Pos3Switch::Pos3Switch() {
 	        AddSequential(new DoNothingPath());
 	        AddSequential(new WaitCommand(2.0));
 	        AddSequential(new P3R_Path());
+	        AddSequential(new WaitCommand(1.0));
 	        AddSequential(new AutoDeploy(1.0));
 
 }

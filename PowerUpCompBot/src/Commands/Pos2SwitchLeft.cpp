@@ -48,6 +48,7 @@ Pos2SwitchLeft::Pos2SwitchLeft() {
 		AddSequential(new DoNothingPath());
 		AddSequential(new WaitCommand(2.0));
 		AddSequential(new P2L_Path());
+		AddSequential(new WaitCommand(1.0));
 		AddSequential(new AutoDeploy(1.0));
 
 
