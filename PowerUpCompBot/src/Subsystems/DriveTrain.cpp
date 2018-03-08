@@ -66,8 +66,8 @@ void DriveTrain::userDrive(std::shared_ptr<Joystick>mainController) {
 	int l_bump = mainController->GetRawButton(5);
 
 	if(l_bump == 1) {
-		left_y = -0.5*mainController->GetRawAxis(1);
-		right_y = -0.5*mainController->GetRawAxis(5);
+		left_y = -0.6*mainController->GetRawAxis(1);
+		right_y = -0.6*mainController->GetRawAxis(5);
 	}
 
 	leftFront->Set(ControlMode::PercentOutput, left_y);

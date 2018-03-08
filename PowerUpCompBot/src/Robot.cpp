@@ -145,8 +145,8 @@ void Robot::AutonomousInit() {
 	}
 
 	//autonomousCommand = chooser.GetSelected();
-	//if (autonomousCommand != nullptr)
-	//	autonomousCommand->Start();
+	if (autonomousCommand != nullptr)
+		autonomousCommand->Start();
 
 }
 

@@ -24,7 +24,7 @@ ClimberWinch::ClimberWinch(): frc::Command() {
 
 // Called just before this Command runs the first time
 void ClimberWinch::Initialize() {
-
+	std::cout << "Climbing!" << std::endl;
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -40,11 +40,11 @@ bool ClimberWinch::IsFinished() {
 
 // Called once after isFinished returns true
 void ClimberWinch::End() {
-
+	Robot::climber->climbStop();
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void ClimberWinch::Interrupted() {
-
+	End();
 }

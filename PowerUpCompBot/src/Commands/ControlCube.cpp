@@ -24,7 +24,7 @@ ControlCube::ControlCube(): frc::Command() {
 
 // Called just before this Command runs the first time
 void ControlCube::Initialize() {
-
+	std::cout << "ControlCube!" << std::endl;
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -39,11 +39,11 @@ bool ControlCube::IsFinished() {
 
 // Called once after isFinished returns true
 void ControlCube::End() {
-End();
+
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void ControlCube::Interrupted() {
-
+	End();
 }

@@ -26,7 +26,7 @@ ClimberPin::ClimberPin(double timeout) : frc::TimedCommand(timeout) {
 
 // Called just before this Command runs the first time
 void ClimberPin::Initialize() {
-
+	std::cout << "PinRelease!" << std::endl;
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -37,11 +37,11 @@ void ClimberPin::Execute() {
 
 // Called once after command times out
 void ClimberPin::End() {
-
+	Robot::climber->pinStop();
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void ClimberPin::Interrupted() {
-
+	End();
 }
