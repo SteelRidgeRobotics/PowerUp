@@ -41,12 +41,12 @@ Pos2Switch::Pos2Switch() {
 
 	if(DriverStation::GetInstance().GetGameSpecificMessage()>0){
 		if(DriverStation::GetInstance().GetGameSpecificMessage()[0]=="L"){
-                AddParallel(new AutoDeploy(0.25));
+                AddParallel(new AutoArm(0.3));
         AddSequential(new P2L_Path());
         AddSequential(new AutoDeploy(1.0));
 		}
 		else{
-		       AddParallel(new AutoDeploy(0.25));
+		       AddParallel(new AutoArm(0.3));
 		        AddSequential(new P2R_Path());
 		        AddSequential(new AutoDeploy(1.0));
 		}
