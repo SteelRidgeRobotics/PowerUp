@@ -41,12 +41,12 @@ Pos3Switch::Pos3Switch() {
 
 	if(DriverStation::GetInstance().GetGameSpecificMessage()>0){
 		if(DriverStation::GetInstance().GetGameSpecificMessage()[0]=="L"){
-                AddParallel(new AutoArm(0.25));
+                AddParallel(new AutoArm(0.3));
         AddSequential(new P3L_Path());
         AddSequential(new AutoDeploy(1.0));
 		}
 		else{
-			AddParallel(new AutoArm(0.25));
+			AddParallel(new AutoArm(0.3));
 			AddSequential(new P3R_Path());
 			AddSequential(new AutoDeploy(1.0));
 		}
