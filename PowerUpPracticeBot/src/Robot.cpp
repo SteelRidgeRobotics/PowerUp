@@ -81,9 +81,10 @@ void Robot::DisabledPeriodic() {
 void Robot::AutonomousInit() {
 	std::string selectedAuto;
 	selectedAuto = chooser.GetSelected();
-	switch(selectedAuto){
-	case "PositionOneLeft":
-		if(gameData != nullptr && gameData.length() == 3){
+	std::cout << "GameData:" << gameData << std::endl;
+	//switch(selectedAuto){
+	if(selectedAuto ==  "PositionOneLeft"){
+		if(gameData.length() == 3){
 			if(gameData.at(0) == 'L') {
 				autonomousCommand = new PositionOneLeft();
 			}
@@ -92,10 +93,11 @@ void Robot::AutonomousInit() {
 		}
 		else
 			autonomousCommand = new DriveWithEncoders();
-		break;
+	}
 
-	case "PositionTwoLeft":
-		if(gameData != nullptr && gameData.length() == 3){
+	//case "PositionTwoLeft":
+	if(selectedAuto ==  "PositionTwoLeft"){
+		if(gameData.length() == 3){
 			if(gameData.at(0) == 'L'){
 				autonomousCommand = new PositionTwoLeft();
 			}
@@ -104,10 +106,11 @@ void Robot::AutonomousInit() {
 		}
 		else
 			autonomousCommand = new DriveWithEncoders();
-		break;
+	}
 
-	case "PositionThreeLeft":
-		if(gameData != nullptr && gameData.length() == 3){
+	//case "PositionThreeLeft":
+	if(selectedAuto ==  "PositionThreeLeft"){
+		if(gameData.length() == 3){
 			if(gameData.at(0) == 'L'){
 				autonomousCommand = new PositionThreeLeft();
 			}
@@ -116,17 +119,20 @@ void Robot::AutonomousInit() {
 		}
 		else
 			autonomousCommand = new DriveWithEncoders();
-		break;
-
-
-	case "DoNothingPath":
-		autonomousCommand = new DoNothingPath();
-		break;
-
-	case "DriveWithEncoders":
-		autonomousCommand = new DriveWithEncoders();
-		break;
 	}
+
+
+	//case "DoNothingPath":
+	if(selectedAuto ==  "DoNothingPath"){
+		autonomousCommand = new DoNothingPath();
+	}
+
+	//case "DriveWithEncoders":
+	if(selectedAuto == "DriveWithEncoders"){
+		autonomousCommand = new DriveWithEncoders();
+	}
+
+
 
 
 	//autonomousCommand = chooser.GetSelected();

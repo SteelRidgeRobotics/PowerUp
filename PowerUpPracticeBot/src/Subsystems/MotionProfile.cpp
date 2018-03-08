@@ -391,8 +391,8 @@ TrajectoryDuration GetTrajectoryDuration(int durationMs)
 	}
 
 	double MotionProfile::velToRotations(double ftpersec){
-		double fudgeFactor = 1.15;
-		return ftToRotations(ftpersec)*60*fudgeFactor;
+		//double fudgeFactor = 1.15;
+		return ftToRotations(ftpersec)*60;
 	}
 
 
