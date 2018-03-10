@@ -53,18 +53,18 @@ OI::OI() {
     mc_A->WhenPressed(new ResetEncoders());
     sideController.reset(new frc::Joystick(1));
     
-    x.reset(new frc::JoystickButton(sideController.get(), 3));
-    x->WhenPressed(new ClimberStop());
-    startButton.reset(new frc::JoystickButton(sideController.get(), 8));
-    startButton->WhenPressed(new ClimberWinch());
-    backButton.reset(new frc::JoystickButton(sideController.get(), 7));
-    backButton->WhenPressed(new ClimberPin(0.5));
-    y.reset(new frc::JoystickButton(sideController.get(), 4));
-    y->WhenPressed(new AutoArm(0.5));
-    b.reset(new frc::JoystickButton(sideController.get(), 2));
-    b->WhenPressed(new AutoArm(0.3));
-    a.reset(new frc::JoystickButton(sideController.get(), 1));
-    a->WhenPressed(new AutoArm(0.09));
+   // x.reset(new frc::JoystickButton(sideController.get(), 3));
+   // x->WhenPressed(new ClimberStop());
+   // startButton.reset(new frc::JoystickButton(sideController.get(), 8));
+   // startButton->WhenPressed(new ClimberWinch());
+   // backButton.reset(new frc::JoystickButton(sideController.get(), 7));
+   // backButton->WhenPressed(new ClimberPin(0.5));
+   // y.reset(new frc::JoystickButton(sideController.get(), 4));
+   // y->WhenPressed(new AutoArm(0.5));
+   // b.reset(new frc::JoystickButton(sideController.get(), 2));
+   // b->WhenPressed(new AutoArm(0.3));
+   // a.reset(new frc::JoystickButton(sideController.get(), 1));
+   // a->WhenPressed(new AutoArm(0.01));
 
     // SmartDashboard Buttons
     frc::SmartDashboard::PutData("DoNothing", new DoNothing());
