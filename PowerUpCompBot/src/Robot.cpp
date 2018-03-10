@@ -61,8 +61,8 @@ void Robot::RobotInit() {
 	frc::SmartDashboard::PutData("Auto Modes", &chooser);
 
 	cs::UsbCamera camera0 = CameraServer::GetInstance()->StartAutomaticCapture(0);
-	camera0.SetResolution(720, 576);
-	camera0.SetFPS(20);
+	camera0.SetResolution(480, 480);
+	camera0.SetFPS(30);
 
 }
 
@@ -163,7 +163,7 @@ void Robot::AutonomousPeriodic() {
 	frc::SmartDashboard::PutNumber("R_Pos", RobotMap::driveTrainRightFront->GetSelectedSensorPosition(0));
 	frc::SmartDashboard::PutNumber("L_Speed", RobotMap::driveTrainLeftFront->GetSelectedSensorVelocity(0));
 	frc::SmartDashboard::PutNumber("R_Speed", RobotMap::driveTrainRightFront->GetSelectedSensorVelocity(0));
-	frc::SmartDashboard::PutNumber("Arm_V", RobotMap::armArmPositionSensor->Get());
+	//frc::SmartDashboard::PutNumber("Arm_V", RobotMap::armArmPositionSensor->Get());
 }
 
 void Robot::TeleopInit() {
@@ -186,7 +186,7 @@ void Robot::TeleopPeriodic() {
 	frc::SmartDashboard::PutNumber("R_Pos", RobotMap::driveTrainRightFront->GetSelectedSensorPosition(0));
 	frc::SmartDashboard::PutNumber("L_Speed", RobotMap::driveTrainLeftFront->GetSelectedSensorVelocity(0));
 	frc::SmartDashboard::PutNumber("R_Speed", RobotMap::driveTrainRightFront->GetSelectedSensorVelocity(0));
-	frc::SmartDashboard::PutNumber("Arm_V", RobotMap::armArmPositionSensor->Get());
+	//frc::SmartDashboard::PutNumber("Arm_V", RobotMap::armArmPositionSensor->Get());
 
 }
 
