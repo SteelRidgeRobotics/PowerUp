@@ -49,9 +49,9 @@ Pos1Switch::Pos1Switch() {
 */
         //AddParallel(new AutoArm(0.38));
 		std::cout << "Wait" << std::endl;
-		AddParallel(new WaitCommand(2.0));
+		AddParallel(new WaitCommand(0.01));
         AddSequential(new P1L_Path());
-        AddSequential(new WaitCommand(1.0));
+        AddSequential(new WaitCommand(0.1));
         AddSequential(new AutoDeploy(1.0));
 
 

@@ -45,9 +45,9 @@ Pos2SwitchRight::Pos2SwitchRight() {
  */
     //AddParallel(new AutoArm(0.38));
 	std::cout << "Wait" << std::endl;
-	AddSequential(new WaitCommand(2.0));
+	AddSequential(new WaitCommand(0.01));
     AddSequential(new P2R_Path());
-    AddSequential(new WaitCommand(1.0));
+    AddSequential(new WaitCommand(0.1));
     AddSequential(new AutoDeploy(1.0));
 
 
