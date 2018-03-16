@@ -47,17 +47,28 @@ void Climber::Periodic() {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
+/*
+ * Activates a motor to pull the climer release pin
+ *
+ * */
 void Climber::pinRelease(){
 	climberRelease->Set(-0.2); //Check whether this should be positive or negative
 }
-
+/*
+ * Stops the climer release motor
+ * */
 void Climber::pinStop(){
 	climberRelease->Set(0.0);
 }
-
+/*
+ * Starts the motor to climb up.
+ */
 void Climber::climbUp(){
 	climberPullMotor->Set(0.5); //Check whether this should be positive or negative
 }
+/*
+ * Stops the climbing motor
+ */
 void Climber::climbStop(){
 	climberPullMotor->Set(0.0);
 }

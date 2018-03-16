@@ -48,6 +48,12 @@ void Intake::Periodic() {
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
+/*
+ * Allows the sideController to control the intake with the left and
+ * right joysticks. If either bumper is pressed, slow mode is activated.
+ * If both bumpers are pressed the intake will stop to prevent
+ * mixed signals to the motor controllers
+ */
 void Intake::controlCube(std::shared_ptr<Joystick>sideController) {
 
 	double left_trigger = sideController->GetRawAxis(2);
@@ -77,12 +83,16 @@ void Intake::controlCube(std::shared_ptr<Joystick>sideController) {
 	}
 
 }
-
+/*
+ * Sets roller motor controllers' speed to zero
+ */
 void Intake::stopRollers(){
 	leftRoller->Set(0.0);
 	rightRoller->Set(0.0);
 }
-
+/*
+ * Sets the motor controller values to be used during autonomous
+ */
 void Intake::autoDeploy(){
 	leftRoller->Set(0.55);
 	rightRoller->Set(-0.55);
