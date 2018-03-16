@@ -52,6 +52,10 @@ void DriveTrain::Periodic() {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
+/*
+ *This method takes input from the left and right joystick axes and outputs values to the motor controllers.
+ *When the left bumper is pressed, the values sent to the controller are lower.
+ */
 void DriveTrain::userDrive(std::shared_ptr<Joystick>mainController) {
 	double left_y = -1*mainController->GetRawAxis(1);
 	double right_y = -1*mainController->GetRawAxis(5);
@@ -74,6 +78,9 @@ void DriveTrain::userDrive(std::shared_ptr<Joystick>mainController) {
 	rightFront->Set(ControlMode::PercentOutput, right_y);
 
 }
+/*
+ * This method converts feet to encoder units.
+ */
 void DriveTrain::encoderPosition(double left, double right){
 	leftFront->Set(ControlMode::Position, ftToRotations(left));
 	rightFront->Set(ControlMode::Position, ftToRotations(right));
@@ -83,13 +90,17 @@ void DriveTrain::encoderPosition(double left, double right){
 	r_pos = right;
 }
 
+/*
+ * Sets encoder positions to zero for reseting
+ */
 void DriveTrain::encoderReset() {
 	leftFront->SetSelectedSensorPosition(0, 0, RobotMap::kTimeoutMs);
 	rightFront->SetSelectedSensorPosition(0, 0, RobotMap::kTimeoutMs);
 }
 
-
-
+/*
+ * Method runs when the encoder has run inputs and goes to zero
+ */
 void DriveTrain::encoderDone() {
 	leftFront->Set(ControlMode::PercentOutput, 0.0);
 	rightFront->Set(ControlMode::PercentOutput, 0.0);
@@ -98,6 +109,9 @@ void DriveTrain::encoderDone() {
 	r_pos = 0.0;
 }
 
+/*
+ * Checks whether the robot is moving
+ */
 bool DriveTrain::isMove(){
 	if ((leftFront->GetSelectedSensorPosition(0) < (l_pos + .1) && leftFront->GetSelectedSensorPosition(0) > (l_pos - .1))
 				&& rightFront->GetSelectedSensorPosition(0) < (r_pos + .1)
@@ -109,7 +123,9 @@ bool DriveTrain::isMove(){
 }
 
 
-
+/*
+ * Calculates how many encoder units are in each wheel rotation
+ */
 double DriveTrain::ftToRotations(double ft){
 	return ft*RobotMap::kGearRatio*RobotMap::kSensorUnitsPerRotation*(1/RobotMap::kWheelDiam)*(1/M_PI);
 }
