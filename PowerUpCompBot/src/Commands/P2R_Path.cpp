@@ -27,7 +27,7 @@ P2R_Path::P2R_Path(): frc::Command() {
 void P2R_Path::Initialize() {
 	std::cout << "P2 Right!" << std::endl;
 	Robot::motionProfile->initMotionProfile();
-	Robot::motionProfile->startFilling(kP2Right_leftprofile, kP2Right_rightprofile, kP2RightSz);
+	Robot::motionProfile->startFilling(kFast2Right_leftprofile, kFast2Right_rightprofile, kFastRSize);
 }
 
 // Called repeatedly when this Command is scheduled to run
