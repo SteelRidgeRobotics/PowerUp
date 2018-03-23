@@ -27,7 +27,7 @@ P3R_Path::P3R_Path(): frc::Command() {
 void P3R_Path::Initialize() {
 	std::cout << "P3 Right!" << std::endl;
 	Robot::motionProfile->initMotionProfile();
-	Robot::motionProfile->startFilling(kP3Right_leftprofile, kP3Right_rightprofile, kP3RightSz);
+	Robot::motionProfile->startFilling(kFast3Right_leftprofile, kFast3Right_rightprofile, kFastP3RSize);
 }
 
 // Called repeatedly when this Command is scheduled to run

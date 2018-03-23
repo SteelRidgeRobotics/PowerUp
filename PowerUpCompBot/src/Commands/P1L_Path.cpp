@@ -27,7 +27,7 @@ P1L_Path::P1L_Path(): frc::Command() {
 void P1L_Path::Initialize() {
 	std::cout << "P1 Left!" << std::endl;
 	Robot::motionProfile->initMotionProfile();
-	Robot::motionProfile->startFilling(kP1Left_leftprofile, kP1Left_rightprofile, kP1LeftSz);
+	Robot::motionProfile->startFilling(kFast1Left_leftprofile, kFast1Left_rightprofile, kFastP1LSize);
 }
 
 // Called repeatedly when this Command is scheduled to run
