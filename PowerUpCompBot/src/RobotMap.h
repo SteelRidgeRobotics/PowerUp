@@ -78,7 +78,7 @@ public:
 
 	//Motion Profile PID_F constants
 
-	static constexpr double kF_MotionLeft = 3.5; //Feed forward gain. This is just a start and needs tuning.
+	static constexpr double kF_MotionLeft = 0.25; //Feed forward gain. This is just a start and needs tuning.
 
 	static constexpr double kP_MotionLeft = 1.0; //Proportional gain. This is just a start and needs tuning.
 
@@ -86,7 +86,7 @@ public:
 
 	static constexpr double kD_MotionLeft = 0.0; // Derivative gain
 
-	static constexpr double kF_MotionRight = 3.5; //Feed forward gain. This is just a start and needs tuning.
+	static constexpr double kF_MotionRight = 0.25; //Feed forward gain. This is just a start and needs tuning.
 
 	static constexpr double kP_MotionRight = 1.0; //Proportional gain. This is just a start and needs tuning.
 
