@@ -60,16 +60,16 @@ void Robot::RobotInit() {
 	chooser.AddObject("DoNothing", "DoNothing");
 	frc::SmartDashboard::PutData("Auto Modes", &chooser);
 
+	//cs::UsbCamera camera1 = CameraServer::GetInstance()->StartAutomaticCapture(1);
+	//camera1.SetResolution(120, 120);
+	//camera1.SetFPS(25);
+
+
+
 	cs::UsbCamera camera0 = CameraServer::GetInstance()->StartAutomaticCapture(0);
-	camera0.SetResolution(240, 240);
-	camera0.SetFPS(30);
+		camera0.SetResolution(250, 250);
+		camera0.SetFPS(35);
 
-	/*
-
-	cs::UsbCamera camera1 = CameraServer::GetInstance()->StartAutomaticCapture(1);
-		camera1.SetResolution(240, 240);
-		camera1.SetFPS(30);
-	*/
 
 
 }

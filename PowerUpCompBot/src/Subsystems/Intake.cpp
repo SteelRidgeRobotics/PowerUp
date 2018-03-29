@@ -94,6 +94,6 @@ void Intake::stopRollers(){
  * Sets the motor controller values to be used during autonomous
  */
 void Intake::autoDeploy(){
-	leftRoller->Set(0.55);
-	rightRoller->Set(-0.55);
+	leftRoller->Set(0.45);
+	rightRoller->Set(-0.45);
 }
